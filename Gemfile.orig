@@ -2,8 +2,11 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
-# kyle's comment is the best
-
+<<<<<<< HEAD
+#asdf this is asdfasdf kyle's comment
+=======
+#asdf this another of albert's comments
+>>>>>>> origin/master
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
