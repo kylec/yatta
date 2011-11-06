@@ -1,4 +1,13 @@
 GoalAppAlbert::Application.routes.draw do
+  root :to => "pages#home"
+  
+  match '/signup', 			:to => 'pages#home'
+  match '/forgotpassword', 	:to => 'pages#home'
+  match '/about', 			:to => 'pages#home'
+  match '/contact', 		:to => 'pages#home'
+  match '/privacy',			:to => 'pages#home'
+  match '/terms',			:to => 'pages#home'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

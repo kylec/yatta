@@ -7,7 +7,6 @@ gem 'rails', '3.1.0'
 
 gem 'sqlite3'
 gem 'mysql2'
-gem 'rspec-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,8 +27,14 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+group :development do
+  gem 'rspec-rails', '2.6.1'
+end
+
 group :test do
   # Pretty printed test output
+  gem 'rspec-rails', '2.6.1'
+  gem 'webrat', '0.7.1'
   gem 'turn', :require => false
   gem 'factory_girl_rails'
 end
