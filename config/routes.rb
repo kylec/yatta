@@ -1,4 +1,6 @@
 GoalAppAlbert::Application.routes.draw do
+  get "users/new"
+
   root :to => "pages#home"
   
   match '/signup', 			:to => 'pages#home'
