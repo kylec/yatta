@@ -1,9 +1,11 @@
 GoalAppAlbert::Application.routes.draw do
   get "users/new"
-
+  
+  resources :users
+  
   root :to => "pages#home"
   
-  match '/signup', 			:to => 'pages#home'
+  match '/signup', 			:to => 'users#new'
   match '/forgotpassword', 	:to => 'pages#home'
   match '/about', 			:to => 'pages#home'
   match '/contact', 		:to => 'pages#home'
