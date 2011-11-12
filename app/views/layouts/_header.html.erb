@@ -1,19 +1,23 @@
 <header>
   <%= link_to logo, root_path %>
   <div class="right">
-    <%= form_for(:session) do |f| %>
-    <table>
-     <tr>
-       <th><%= f.text_field :email, :placeholder => "Email" %></th>
-       <th><%= f.password_field :password, :placeholder => "Password" %></th>
-       <th><%= f.submit "Log in" %></th>
-     </tr>
-     <tr>
-       <th></th>
-       <th><%= link_to "Forgot password?", forgotpassword_path %></th>
-       <th><%= link_to "Sign up", signup_path %></th>
-     </tr>
-    </table>
+    <% if signed_in? %>
+      <%= link_to "Sign out", signout_path, :method => :delete %>
+    <% else %>
+      <%= form_for(:session, :url => sessions_path) do |f| %>
+        <table>
+          <tr>
+            <th><%= f.text_field :email, :placeholder => "Email" %></th>
+            <th><%= f.password_field :password, :placeholder => "Password" %></th>
+            <th><%= f.submit "Log in" %></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th><%= link_to "Forgot password?", forgotpassword_path %></th>
+            <th><%= link_to "Sign up", signup_path %></th>
+          </tr>
+        </table>
+      <% end %>
     <% end %>
   </div>
   <nav class="round">

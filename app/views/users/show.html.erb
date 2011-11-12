@@ -1,11 +1,10 @@
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
-      <h1>
-        <%= @user.name %> <br>
-        <%= @user.username %> <br>
-        <%= image_tag(@user.profile_picture) %>
-      </h1>     
+      <h1><%= @user.name %></h1> <br>
+      <h2><%= @user.username %></h2> <br>
+      <%= profilePicture %>
+      <%= link_to "Account Settings", accountSettings_path %>    
     </td>    
   </tr>
 </table>

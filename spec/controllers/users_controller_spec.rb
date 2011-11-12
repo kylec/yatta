@@ -10,7 +10,7 @@ describe UsersController do
     end
 
     it "should have the right title" do
-      get 'new'
+      get :new
       response.should have_selector("title", :content => "Sign up")
     end
   end
@@ -44,25 +44,67 @@ describe UsersController do
   
   describe "success" do
 
-      before(:each) do
-        @attr = { :name => "New User", :username => "exp", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
-      end
+    before(:each) do
+      @attr = { :name => "New User", :username => "exp", :email => "user@example.com",
+                :password => "foobar", :password_confirmation => "foobar" }
+    end
 
-      it "should create a user" do
-        lambda do
-          post :create, :user => @attr
-        end.should change(User, :count).by(1)
-      end
-
-      it "should redirect to the user show page" do
+    it "should create a user" do
+      lambda do
         post :create, :user => @attr
-        response.should redirect_to(user_path(assigns(:user)))
-      end    
+      end.should change(User, :count).by(1)
+    end
+
+    it "should redirect to the user show page" do
+      post :create, :user => @attr
+      response.should redirect_to(user_path(assigns(:user)))
+    end    
       
-      it "should have a welcome message" do
-        post :create, :user => @attr
-        flash[:success].should =~ /welcome to the goal app/i
-      end
+    it "should have a welcome message" do
+      post :create, :user => @attr
+      flash[:success].should =~ /welcome to the goal app/i
+    end
+  end
+
+  describe "GET 'show'" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+
+    it "should be successful" do
+      get :show, :id => @user
+      response.should be_success
+    end
+
+    it "should find the right user" do
+      get :show, :id => @user
+      assigns(:user).should == @user
+    end
+
+    it "should have the right title" do
+      get :show, :id => @user
+      response.should have_selector("title", :content => @user.name)
+    end
+
+    it "should include the user's name" do
+      get :show, :id => @user
+      response.should have_selector("h1", :content => @user.name)
+    end
+
+    it "should include the user's username" do
+      get :show, :id => @user
+      response.should have_selector("h2", :content => @user.username)
+    end
+
+    it "should have a profile image" do
+      get :show, :id => @user
+      response.should have_selector("img", :src => "/assets/defaultProfilePicture.png")
+    end
+    
+    it "should have account settings link" do
+      get :show, :id => @user
+		  response.should have_selector("a", :href => accountSettings_path,
+		                                     :content => "Account Settings")
+	  end
   end
 end

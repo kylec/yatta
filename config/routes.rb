@@ -1,15 +1,22 @@
 GoalAppAlbert::Application.routes.draw do
   
+  get "sessions/new"
+
   resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
   
   root :to => "pages#home"
   
-  match '/signup', 			:to => 'users#new'
-  match '/forgotpassword', 	:to => 'pages#home'
-  match '/about', 			:to => 'pages#home'
-  match '/contact', 		:to => 'pages#home'
-  match '/privacy',			:to => 'pages#home'
-  match '/terms',			:to => 'pages#home'
+  match '/signup',          :to => 'users#new'
+  match '/signin',          :to => 'sessions#new'
+  match '/signout',         :to => 'sessions#destroy'
+
+  match '/forgotpassword',  :to => 'pages#home'
+  match '/about',           :to => 'pages#home'
+  match '/contact',         :to => 'pages#home'
+  match '/privacy',         :to => 'pages#home'
+  match '/terms',           :to => 'pages#home'
+  match '/accountSettings', :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
