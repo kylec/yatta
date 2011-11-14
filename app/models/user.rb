@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+	has_many :goals, :dependent => :destroy # refers to created goals
+	has_many :user_goal_relationships, :foreign_key => "user_id", :dependent => :destroy
+  
+  has_many :workingGoals, :through => :user_goal_relationships, :source => :goal_id 
+  													 
   validates :name, :presence => true,
                    :length   => { :maximum => 50 }
   validates :email, :presence   => true,
