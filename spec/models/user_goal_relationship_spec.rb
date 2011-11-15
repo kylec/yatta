@@ -6,9 +6,7 @@ describe UserGoalRelationship do
     @user2 = Factory(:user, :username => Factory.next(:username), :email => Factory.next(:email))
     @attr = { :schedule => "path to XML" }
     @user2.goals.create!(@attr)
-    user2goals = @user2.goals[0]
-    puts user2goals.class
-    @user_goal_relationship = @user1.user_goal_relationships.build(:goal_id => user2goals.id)
+    @user_goal_relationship = @user1.user_goal_relationships.build(:goal_id => @user2.goals[0].id)
   end
 
   it "should create a new instance given valid attributes" do
