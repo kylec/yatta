@@ -24,7 +24,7 @@ describe UserGoalRelationship do
     end
 
     it "should have the right user" do
-      @user_goal_relationship.user_id.should == @user1
+      @user_goal_relationship.user.should == @user1
     end
 
     it "should have a working goal id" do
@@ -32,7 +32,7 @@ describe UserGoalRelationship do
     end
 
     it "should have the right working goal" do
-      @user_goal_relationship.goal_id.should == @user2.goals[0]
+      @user_goal_relationship.goal.should == @user2.goals[0]
     end
   end
   
