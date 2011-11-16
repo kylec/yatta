@@ -1,9 +1,12 @@
 GoalAppAlbert::Application.routes.draw do
   
+  get "goals/new"
   get "sessions/new"
+  get "goals/new"
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :goals,    :only => [:new, :create, :destroy]
   
   root :to => "pages#home"
   
@@ -11,6 +14,8 @@ GoalAppAlbert::Application.routes.draw do
   match '/signin',          :to => 'sessions#new'
   match '/signout',         :to => 'sessions#destroy'
 
+  match '/newGoal',         :to => 'goals#new'
+  
   match '/forgotpassword',  :to => 'pages#home'
   match '/about',           :to => 'pages#home'
   match '/contact',         :to => 'pages#home'

@@ -1,0 +1,16 @@
+<h1>Create A Goal</h1>
+
+<% numMilestones = 3 %>
+<%= form_for(:newgoal, :url => goals_path) do |f| %>
+  <ul>
+    <% numMilestones.times do |i| %>
+    <li>
+        <%= f.text_field :title, :index => i %>
+        <%= f.text_area :description, :index => i %>
+    </li>
+    <% end %>
+  </ul>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
+<% end %>
