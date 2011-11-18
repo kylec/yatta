@@ -11,5 +11,4 @@ module ApplicationHelper
   def logo
     image_tag("logo.png", :alt =>"Goal App", :class => "round", :width => "160", :height => "80")
   end
-  
 end

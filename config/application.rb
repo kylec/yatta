@@ -14,7 +14,10 @@ module GoalAppAlbert
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    #def xmlpath 
+    XMLPATH = "app/assets/xml/"
+      
+    #end
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
 
@@ -46,3 +49,5 @@ module GoalAppAlbert
     config.assets.version = '1.0'
   end
 end
+
+
