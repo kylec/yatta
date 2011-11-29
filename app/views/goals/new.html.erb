@@ -1,19 +1,17 @@
 <h1>Create A Goal</h1>
 
-<% numMilestones = 3 %>
-<%= form_for(:newgoal, :url => goals_path) do |f| %>
-  <%= f.label :goal_title, "Title" %><br>
-  <%= f.text_field :goal_title %><br>
-  <%= f.label :goal_description, "Description" %><br>
-  <%= f.text_area  :goal_description %><br>
-  <ul>
-    <% numMilestones.times do |i| %>
-    <li>
-        <%= f.text_field :title, :index => i %><br>
-        <%= f.text_area :description, :index => i %><br>
-    </li>
-    <% end %>
-  </ul>
+<%= form_for @goal do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.label :title, "Title" %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :description, "Description" %><br>
+  <%= f.text_area  :description %><br>
+  <%= f.fields_for :milestones do |builder| %>
+    <p>
+      <%= builder.text_field :title %><br/>
+      <%= builder.text_area :description %>
+    </p>
+  <% end %>
   <div class="actions">
     <%= f.submit "Create" %>
   </div>
