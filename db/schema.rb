@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20111120202144) do
     t.integer  "goal_id"
     t.string   "title"
     t.string   "description"
+    t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

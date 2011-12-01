@@ -15,7 +15,6 @@ GoalAppAlbert::Application.routes.draw do
   match '/signout',         :to => 'sessions#destroy'
 
   match '/newGoal',         :to => 'goals#new'
-  
   match '/forgotpassword',  :to => 'pages#home'
   match '/about',           :to => 'pages#home'
   match '/contact',         :to => 'pages#home'

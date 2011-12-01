@@ -1,0 +1,7 @@
+<tr>
+  <td class="goal">
+    <span class="title"><%= goal.title %></span> <br>
+    <span class="description">&nbsp;<%= goal.description %></span> <br>
+    <%= render :partial => 'milestones/milestone', :collection => goal.milestones%>
+  </td>
+</tr>
