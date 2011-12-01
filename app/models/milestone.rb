@@ -1,5 +1,6 @@
 class Milestone < ActiveRecord::Base
   attr_accessible :goal_id, :title, :description, :order
+  acts_as_list
   
   belongs_to :goal
 

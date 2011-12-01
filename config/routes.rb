@@ -7,6 +7,7 @@ GoalAppAlbert::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :goals,    :only => [:new, :create, :show, :destroy]
+  #map.resources :goals, :collection => { :prioritize_milestones => :post }
   
   root :to => "pages#home"
   

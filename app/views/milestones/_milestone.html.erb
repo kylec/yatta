@@ -1,64 +1,10 @@
-<tr class="menu_on_hover">
-  <td class="milestone">
-    <h2> asdf</h2>
-    <div id="a"> mouse over </div>
-      <div class="togglebox">
-        <div class="content">
-          <!--Content Here-->
-        </div>
-      </div>
-      <span class="title"><%= milestone.title %></span><br>
-      <span class="description"><%= milestone.description %></span><br>
-  <a href="#" id="toDrag" draggable="true">This is a draggable item1</a><br>
-  <a href="#" id="toDrag" draggable="true">This is a draggable item2</a><br>
-  <a href="#" id="toDrag" draggable="true">This is a draggable item3</a><br>
-  </td>
-</tr>
-
-
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
 <style>
-h2 {
-	padding:10px;
-	font-size:20px;
-	color:#243953;
-	background-color:#fafafa;
-	border: 1px solid #a9a9a9;
-	-moz-border-radius: 7px; /* Rounder Corner */
-       -webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	text-align:center;
-	font-family:Georgia, "Times New Roman", Times, serif;
-	margin-bottom:5px;
-}
-
-.togglebox {
-	background-color:#CCC;
-	border: 1px solid #a9a9a9;
-	/* Rounder Corner */
-	-moz-border-radius: 7px;
-        -webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	overflow: hidden;
-	font-size: 1.2em;
-	width: 295px;
-	clear: both;
-	margin-bottom:10px;
-}
-
-.togglebox .content {
-	padding: 20px;
-}
+  .handle:hover{cursor: move;}
 </style>
 
-<script>
-$(document).ready(function(){
-//Hide the tooglebox when page load
-$(".togglebox").hide();
-//slide up and down when hover over heading 2
-$("#a").mouseover(function(){
-// slide toggle effect set to slow you can set it to fast too.
-$(this).next(".togglebox").slideToggle("fast");
-return true;
-});
-});
-</script>
+<ul id="milestones">
+  <li id="milestone_<%= milestone.id %>">
+    <span class="handle">[drag]</span><%= milestone.title %>
+  </li>
+</ul>

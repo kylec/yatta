@@ -153,20 +153,6 @@ span.description {
   margin-bottom: 20px;
 }
 
-h2 {
-	padding:10px;
-	font-size:20px;
-	color:#243953;
-	background-color:#fafafa;
-	border: 1px solid #a9a9a9;
-	-moz-border-radius: 7px; /* Rounder Corner */
-       -webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	text-align:center;
-	font-family:Georgia, "Times New Roman", Times, serif;
-	margin-bottom:5px;
-}
-
 .togglebox {
 	background-color:#CCC;
 	border: 1px solid #a9a9a9;

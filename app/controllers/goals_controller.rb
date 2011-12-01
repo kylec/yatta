@@ -46,6 +46,15 @@ class GoalsController < ApplicationController
       puts "goal is not nil"
     end
   end
+  
+  def prioritize_tasks
+    @goal = Goal.find(params[:id])
+    @goal.milestones.each do |milestone|
+      milestone.order = params['milestone'].index(milestone.id.to_s) + 1
+      milestone.save
+    end
+    render :nothing => true
+  end
 
   private
 
