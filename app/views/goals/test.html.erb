@@ -1,0 +1,51 @@
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "rails.js" %>
+<style>
+
+  #milestones { list-style-type: none; margin: 0; padding: 0; width: 60%;}
+  3portlet { margin: 0 1em 1em 0; }
+	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+</style>
+
+    <h1><%= @goal.title %></h1>
+    <h2><%= @goal.description %><h2>
+    <div id="milestones"> <% @goal.milestones.each do |milestone| %>
+        <li><div id="milestone_<%= milestone.id %>" class="portlet">
+        <div class="portlet-header"> <%= milestone.title %> </div>
+        <div class="portlet-content"> <%= milestone.description %> </div>
+      </div></li>
+      <% end %>
+    </div>
+
+<% #= render :partial => 'milestones/milestone', :collection => goal.milestones%>
+
+<% content_for :javascript do %>
+  <% javascript_tag do %>
+  
+  		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+			.find( ".portlet-header" )
+				.addClass( "ui-widget-header ui-corner-all" )
+				.prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+				.end()
+			.find( ".portlet-content" );
+
+		$( ".portlet-header .ui-icon" ).click(function() {
+			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		}
+		
+     $('#milestones').sortable(
+        {
+          axis: 'y',
+          dropOnEmpty:false,
+          cursor: 'crosshair',
+          items: 'li',
+          opacity: 0.4,
+          scroll: true
+          })
+
+  <% end %>  
+<% end %>

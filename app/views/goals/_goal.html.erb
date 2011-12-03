@@ -1,24 +1,22 @@
 <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
 <style>
-  .handle:hover{cursor: move;}
 
-  #milestones { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #milestones { list-style-type: none; margin: 0; padding: 0; width: 60%; 
+   border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+
 </style>
 
-<tr>
-  <td class="goal">
-    <h1><%= goal.title %></h1>
-    <p><%= goal.description %></p>
-    <ul id="milestones"> <% goal.milestones.each do |milestone| %>
-      <li id="milestone_<%= milestone.id %>">
-        <span class="title"> <%= milestone.title %> </span><br>
-        <span class="description"> <%= milestone.description %> </span>
-      </li>
-      <% end %>
-    </ul>
-      <% #= render :partial => 'milestones/milestone', :collection => goal.milestones%>
-  </td>
-</tr>
+<h1><%= @goal.title %></h1>
+<h2><%= @goal.description %><h2>
+  <div id="milestones"> <% @goal.milestones.each do |milestone| %>
+    <li><div id="milestone_<%= milestone.id %>" class="portlet">
+      <div class="portlet-header"> <%= milestone.title %> </div>
+      <div class="portlet-content"> <%= milestone.description %> </div>
+    </div></li>
+  <% end %>
+  </div>
+<% #= render :partial => 'milestones/milestone', :collection => goal.milestones%>
+
 
 <% content_for :javascript do %>
   <% javascript_tag do %>
@@ -29,17 +27,7 @@
           cursor: 'crosshair',
           items: 'li',
           opacity: 0.4,
-          scroll: true,
-          update: function(){
-            $.ajax({
-                type: 'post',
-                data: $('#milestones').sortable('serialize') + '&id=<%=@goal.id-%>',
-                dataType: 'script',
-                complete: function(request){
-                    $('#milestones').effect('highlight');
-                  },
-                url: '/goals/prioritize_milestones'})
-            }
+          scroll: true
           })
     <% end %>
 <% end %>

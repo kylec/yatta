@@ -37,14 +37,19 @@ class GoalsController < ApplicationController
     
   end
   
-  def show
-    @title = "Goal"
-    @goal = Goal.find(params[:id])
+  def test
+    @title = "test"
+    @goal = Goal.find(37)
     if(@goal.nil?)
-      puts "goal is nil"
+      puts "goal is nil "
     else 
       puts "goal is not nil"
     end
+  end
+  
+  def show
+    @title = "Goal"
+    @goal = Goal.find(params[:id])
   end
   
   def prioritize_tasks

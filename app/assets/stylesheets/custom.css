@@ -152,21 +152,3 @@ span.description {
   padding-bottom: 12px;
   margin-bottom: 20px;
 }
-
-.togglebox {
-	background-color:#CCC;
-	border: 1px solid #a9a9a9;
-	/* Rounder Corner */
-	-moz-border-radius: 7px;
-        -webkit-border-radius: 7px;
-	-khtml-border-radius: 7px;
-	overflow: hidden;
-	font-size: 1.2em;
-	width: 295px;
-	clear: both;
-	margin-bottom:10px;
-}
-
-.togglebox .content {
-	padding: 20px;
-}
