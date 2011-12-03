@@ -1,18 +1,39 @@
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
+
 <h1>Create A Goal</h1>
 
 <%= form_for @goal do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <%= f.label :title, "Title" %><br>
-  <%= f.text_field :title %><br>
-  <%= f.label :description, "Description" %><br>
-  <%= f.text_area  :description %><br>
-  <%= f.fields_for :milestones do |builder| %>
-    <p>
-      <%= builder.text_field :title %><br/>
-      <%= builder.text_area :description %>
-    </p>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Create" %>
+  <div class="allgoalinfo">
+    <div class="round goalfields">
+      <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
+      <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
+    </div>
+    <div id="milestones">
+      <%= f.fields_for :milestones do |builder| %>
+        <li><div class="round milefields">
+          <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %><br/>
+          <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
+        </div></li>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
   </div>
+<% end %>
+
+
+<% content_for :javascript do %>
+  <% javascript_tag do %>
+     $('#milestones').sortable(
+        {
+          axis: 'y',
+          dropOnEmpty:false,
+          cursor: 'crosshair',
+          items: 'li',
+          opacity: 0.4,
+          scroll: true
+          })
+    <% end %>
 <% end %>

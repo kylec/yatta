@@ -152,3 +152,58 @@ span.description {
   padding-bottom: 12px;
   margin-bottom: 20px;
 }
+
+.allgoalinfo {
+  position: relative;
+  text-align: center;
+}
+
+.goalfields {
+    width: 450px;
+    height: 250px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    padding: 1% 1px 1% 1px;   
+}
+
+.goaltitleinput {
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+.goaldescinput {
+  width: 90%;
+  height: 85%;
+  resize: none;
+}
+
+.milefields {
+    width: 450px;
+    height: 250px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    padding: 1% 1px 1% 1px;
+    background-color: white;
+    margin-bottom: 10px;
+    list-style-type: none; 
+}
+
+.miletitleinput {
+  width: 90%;
+
+  margin-bottom: 5px;
+}
+
+.miledescinput {
+  width: 90%;
+  height: 85%;
+  resize: none;
+}
+
+.goalfont {
+  color: black;
+  font-family: Century Gothic, sans-serif;
+  font-size: 14px;
+}
