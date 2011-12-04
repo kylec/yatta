@@ -160,7 +160,7 @@ span.description {
 
 .goalfields {
     width: 450px;
-    height: 250px;
+    height: 200px;
     position: relative;
     left: 50%;
     margin-left: -225px;
@@ -180,30 +180,50 @@ span.description {
 
 .milefields {
     width: 450px;
-    height: 250px;
+    height: 200px;
     position: relative;
     left: 50%;
     margin-left: -225px;
     padding: 1% 1px 1% 1px;
     background-color: white;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     list-style-type: none; 
 }
 
 .miletitleinput {
   width: 90%;
-
   margin-bottom: 5px;
+  z-index: 1;
 }
 
 .miledescinput {
   width: 90%;
   height: 85%;
   resize: none;
+  z-index: 1;
 }
 
 .goalfont {
   color: black;
   font-family: Century Gothic, sans-serif;
   font-size: 14px;
+}
+
+.fadebox {
+	background-color:#CCC;
+	border: 1px solid #a9a9a9;
+	/* Rounder Corner */
+	-moz-border-radius: 7px;
+        -webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	overflow: hidden;
+	font-size: 1.2em;
+	width: 295px;
+	clear: both;
+	margin-bottom:10px;
+        top: 5px;
+        right: 5px;
+        z-index: 5;
+        position: absolute;
+
 }

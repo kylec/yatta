@@ -1,7 +1,7 @@
 <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
 
 <h1>Create A Goal</h1>
-
+<div id="goaldebug"></div>
 <%= form_for @goal do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="allgoalinfo">
@@ -10,11 +10,16 @@
       <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
     </div>
     <div id="milestones">
+      <% idcounter = 0 %>
       <%= f.fields_for :milestones do |builder| %>
-        <li><div class="round milefields">
+        <li class ="round milefields" id="milestones_<%=idcounter%>">
+          <div class="fadebox" id="fadebox_milestones_<%=idcounter%>">
+            tooood
+          </div>
           <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %><br/>
           <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
-        </div></li>
+        </li>
+        <% idcounter += 1 %>
       <% end %>
     </div>
     <div class="actions">
@@ -34,6 +39,54 @@
           items: 'li',
           opacity: 0.4,
           scroll: true
-          })
+          });
+
+
+     $(document).ready(function(){
+/*
+     $(".milefields").mouseenter(function(evt){
+       document.getElementById('goaldebug').innerHTML = 'Inside mouseenter';
+       var entered = evt.target;
+       var currentID = entered.id || "No ID!";
+       document.getElementById('goaldebug').innerHTML = 'Inside mouseenter'+currentID;
+       $(currentID).mouseenter(
+         function(){document.getElementById('goaldebug').innerHTML = 'Inside mouseenter!!!'; $(".fadebox").fadeIn(); }
+       );
+     });
+          $(document.body).mouseleave(function(evt){
+       var entered = evt.target;
+       var currentID = entered.id || "No ID!";
+       $(currentID).mouseleave(
+         function(){ $(".fadebox").fadeOut(); }
+       );
+     });
+*/
+
+       // Hide the fadebox when page load
+       $(".fadebox").hide();
+
+       // Fade In when mouse is over
+       $(".milefields").mouseenter(
+         function(evt){
+           var entered = evt.target;
+           var currentTAG = entered.tagName || "No Tag!";
+           var currentID = entered.id || "No ID!";
+           document.getElementById('goaldebug').innerHTML = 'Inside mouseenter '+currentID+" "+currentTAG;
+           // fetch the parent if the ID is a child of the LI tag
+           if (currentTAG != "LI")
+           {
+             currentID = document.getElementById(currentID).parentNode.id;
+             document.getElementById('goaldebug').innerHTML = 'Update to Parent '+currentID;
+           }
+          $("#fadebox_"+currentID).fadeIn();
+         }
+       );
+
+       // Fade out when mouse is out
+       $(".milefields").mouseleave(
+         function(){ $(".fadebox").fadeOut(); }
+       );
+     });
+
     <% end %>
 <% end %>
