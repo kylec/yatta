@@ -78,13 +78,15 @@
              currentID = document.getElementById(currentID).parentNode.id;
              document.getElementById('goaldebug').innerHTML = 'Update to Parent '+currentID;
            }
-          $("#fadebox_"+currentID).fadeIn();
+           $("#fadebox_"+currentID).show();
          }
        );
 
        // Fade out when mouse is out
        $(".milefields").mouseleave(
-         function(){ $(".fadebox").fadeOut(); }
+         function(evt){
+           $(".fadebox").hide();
+         }
        );
      });
 
