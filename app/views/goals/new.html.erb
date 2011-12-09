@@ -12,7 +12,7 @@
     <div id="milestones">
       <% idcounter = 0 %>
       <%= f.fields_for :milestones do |builder| %>
-        <li class ="round milefields" id="<%=idcounter%>">
+        <li class ="round milefields">
           <div class="fadebox">
             <button class="add" type="button">+</button>
             <button class="remove" type="button">x</button>
@@ -39,7 +39,8 @@
           cursor: 'crosshair',
           items: 'li',
           opacity: 0.4,
-          scroll: true
+          scroll: true,
+          stop: function(event, ui) { renumberMilestones(); }
           });
  
     $(document).ready(function(){
@@ -50,8 +51,8 @@
           while (entered.tagName != "LI") {
             entered = entered.parentNode;
           }
-           document.getElementById('goaldebug').innerHTML += ' before remove '+ evt.target.tagName;
           $(entered).remove();
+          renumberMilestones();
         }
       );
       
@@ -62,16 +63,11 @@
   
           while (entered.tagName != "LI") {
             entered = entered.parentNode;
-            document.getElementById('goaldebug').innerHTML += ' Inside mouseenter '+ entered.tagName;
           } 
           var newElem = $(entered).clone();
           newElem.find('input').val('');
-          newElem.attr({
-            id: "-1"
-            });
-          document.getElementById('goaldebug').innerHTML += ' test newElem '+ newElem.tagName
           $(entered).after(newElem);
-          //evt.target.attr('disabled','true');
+          renumberMilestones();
           $(document).ready();
         }
       );
@@ -85,18 +81,16 @@
         function(evt){
           var entered = evt.target;
           // fetch the parent if the ID is a child of the LI tag  
-          document.getElementById('goaldebug').innerHTML += ' Inside mouseenter... '+" "+ entered.className + " " +entered.tagName;
           if (entered.tagName != "LI") {
             while( (entered.className != "fadebox") ) {
-              entered = entered.previousSibling;
-              document.getElementById('goaldebug').innerHTML += ' Inside while ... '+" "+ entered.className + " " +entered.tagName;  
+              entered = entered.previousSibling;  
             }
           } else {
+            // in the LI tag, need to fetch fadebox div
             entered = entered.firstChild;
             while( (entered.className != "fadebox") ) {
               entered = entered.nextSibling;
             }
-              //document.getElementById('goaldebug').innerHTML += ' Inside else... '+" "+ entered.className + " " +entered.tagName;
           }
           $(entered).show();
         }   
@@ -111,5 +105,22 @@
       );
     });
 
+    // function to renumber tag attributes on milestone list
+    function renumberMilestones() {
+      var inputField;
+      var textAreaField;
+      $("li.milefields").each(function(index) {
+        inputField = $(this).find('input');
+        textAreaField = $(this).find('textarea');
+
+        // renumber the title input field
+        inputField.attr("id", "goal_milestones_attributes_"+index+"_title");
+        inputField.attr("name", "goal[milestones_attributes]["+index+"][title]");
+
+        // renumber the description textarea field
+        textAreaField.attr("id", "goal_milestones_attributes_"+index+"_description");
+        textAreaField.attr("name", "goal[milestones_attributes]["+index+"][description]");
+      });
+    }
     <% end %>
 <% end %>
