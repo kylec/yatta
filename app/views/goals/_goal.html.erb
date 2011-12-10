@@ -6,10 +6,10 @@
 </style>
 
 <h1><%= @goal.title %></h1>
-<h2><%= @goal.description %><h2>
+<h2><%= @goal.description %></h2>
   <div id="milestones"> <% @goal.milestones.each do |milestone| %>
     <li><div id="milestone_<%= milestone.id %>" class="portlet">
-      <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> </br> </div>
+      <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> <br> </div>
       <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.description %> </div>
     </div></li>
   <% end %>

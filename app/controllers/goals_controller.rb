@@ -8,7 +8,6 @@ class GoalsController < ApplicationController
     @goal = Goal.new
     3.times do |i| 
       milestone = @goal.milestones.build()
-      milestone.order = i
     end
     @title = "Create Goal"
   end
@@ -19,13 +18,11 @@ class GoalsController < ApplicationController
     @goal = Goal.new(params[:goal])
    
     @goal.milestones.each do |i|
-      i.order = index
+      i.position = index
       index += 1
     end
    
     if @goal.save
-     puts "saving........"
-       
       flash[:notice] = "Successfully created goal."
       redirect_to @goal
     else
@@ -37,28 +34,14 @@ class GoalsController < ApplicationController
     
   end
   
-  def test
-    @title = "test"
-    @goal = Goal.find(37)
-    if(@goal.nil?)
-      puts "goal is nil "
-    else 
-      puts "goal is not nil"
-    end
-  end
-  
   def show
     @title = "Goal"
     @goal = Goal.find(params[:id])
   end
-  
-  def prioritize_tasks
+
+  def edit
+    @title = "Edit"
     @goal = Goal.find(params[:id])
-    @goal.milestones.each do |milestone|
-      milestone.order = params['milestone'].index(milestone.id.to_s) + 1
-      milestone.save
-    end
-    render :nothing => true
   end
 
   private
