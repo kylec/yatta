@@ -6,7 +6,7 @@ GoalAppAlbert::Application.routes.draw do
 
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :goals,    :only => [:new, :create, :show, :destroy]
+  resources :goals,    :only => [:new, :create, :show, :update, :destroy]
   
   root :to => "pages#home"
   

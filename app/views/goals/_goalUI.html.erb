@@ -1,0 +1,142 @@
+<%= javascript_include_tag "http://code.jquery.com/jquery-1.7.1.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "rails.js" %>
+
+<div id="goaldebug"></div>
+<%= form_for @goal do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="allgoalinfo">
+    <div class="round goalfields">
+      <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
+      <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
+    </div>
+    <div id="milestones">
+      <% idcounter = 0 %>
+      <%= f.fields_for :milestones, :include_id => false do |builder| %>
+        <li class ="round milefields">
+          <div class="fadebox">
+            <button class="add" type="button">+</button>
+            <button class="remove" type="button">x</button>
+          </div>
+          <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %>  <br/>
+          <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
+          <%= builder.hidden_field :id, :value => @goal.milestones[idcounter].id, :class => "hiddenInput" %>
+        </li>
+        <% idcounter += 1 %>
+      <% end %>
+    </div>
+    <div class="actions">
+      <% if (@title == GoalsHelper::CREATE_TITLE) %>
+        <%= f.submit "Create" %>
+      <% elsif (@title == GoalsHelper::EDIT_TITLE) %>
+        <%= f.submit "Update" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+<% content_for :javascript do %>
+  <% javascript_tag do %>
+     $('#milestones').sortable(
+        {
+          axis: 'y',
+          dropOnEmpty:false,
+          cursor: 'crosshair',
+          items: 'li',
+          opacity: 0.4,
+          scroll: true,
+          stop: function(event, ui) { renumberMilestones(); }
+          });
+
+    $(document).ready(function(){
+      // remove
+      $(".remove").live("click",
+        function(evt){
+          var entered = evt.target;
+          while (entered.tagName != "LI") {
+            entered = entered.parentNode;
+          }
+          $(entered).remove();
+          renumberMilestones();
+        }
+      );
+
+      // add
+      $(".add").live("click",
+        function(evt){
+          var entered = evt.target;
+
+          while (entered.tagName != "LI") {
+            entered = entered.parentNode;
+          }
+          var newElem = $(entered).clone();
+          newElem.find('input').val('');
+          newElem.find('textarea').val('');
+          // remove the hidden ID input field
+          //newElem.find('.hiddenInput').remove();
+          $(entered).after(newElem);
+          renumberMilestones();
+          $(document).ready();
+        }
+      );
+
+      // Hide the fadebox when page load
+      $(".fadebox").hide();
+
+      // Fade In when mouse is over
+      //$(".milefields").mouseenter(
+      $(".milefields").live("mouseenter",
+        function(evt){
+          var entered = evt.target;
+          // fetch the parent if the ID is a child of the LI tag
+          if (entered.tagName != "LI") {
+            while( (entered.className != "fadebox") ) {
+              entered = entered.previousSibling;
+            }
+          } else {
+            // in the LI tag, need to fetch fadebox div
+            entered = entered.firstChild;
+            while( (entered.className != "fadebox") ) {
+              entered = entered.nextSibling;
+            }
+          }
+          $(entered).show();
+        }
+      );
+
+      // Fade out when mouse is out
+      //$(".milefields").mouseleave(
+      $(".milefields").live("mouseleave",
+        function(evt){
+          $(".fadebox").hide();
+        }
+      );
+    });
+
+    // function to renumber tag attributes on milestone list
+    function renumberMilestones() {
+      $("li.milefields").each(function(index, liData) {
+        $(liData).children().each(function(index2, childData) {
+          var childIdData = $(childData).attr("id");
+          if (childIdData != undefined)
+          {
+            if (childIdData.search("title") != -1) {
+              //renumber the title input field
+              $(childData).attr("id", "goal_milestones_attributes_"+index+"_title");
+              $(childData).attr("name", "goal[milestones_attributes]["+index+"][title]");
+            }
+            else if (childIdData.search("description") != -1) {
+              // renumber the description textarea field
+              $(childData).attr("id", "goal_milestones_attributes_"+index+"_description");
+              $(childData).attr("name", "goal[milestones_attributes]["+index+"][description]");
+            }
+            else if (childIdData.search("id") != -1) {
+              // renumber the description hidden input mileId field
+              $(childData).attr("id", "goal_milestones_attributes_"+index+"_id");
+              $(childData).attr("name", "goal[milestones_attributes]["+index+"][id]");
+            }
+          }
+        });
+      });
+    }
+    <% end %>
+<% end %>
