@@ -13,10 +13,9 @@ class GoalsController < ApplicationController
   end
 
   def create
-    index = 1 
-  
     @goal = Goal.new(params[:goal])
-   
+
+    index = 0
     @goal.milestones.each do |i|
       i.position = index
       index += 1
@@ -53,9 +52,11 @@ class GoalsController < ApplicationController
     # delete out goals from originalGoal that were removed
     # from the form
     @databaseGoal.milestones.each do | milestone |
-      foundValue = nil;
+      foundKeyValue = nil
+      foundValue = nil
       params["goal"]["milestones_attributes"].each do | key, value |
         if (value["id"].to_i() == milestone.id)
+           foundKeyValue = key
            foundValue = value
            break
         end
@@ -68,6 +69,10 @@ class GoalsController < ApplicationController
         # remove the id key since updating the id is a no-no
         tempFoundValue = Hash.new(foundValue)
         tempFoundValue.delete("id")
+        
+        # update the position
+        tempFoundValue["position"] = foundKeyValue.to_i()
+
         # if found, update database with values from the form
         milestone.update_attributes(tempFoundValue)
       end
@@ -75,17 +80,15 @@ class GoalsController < ApplicationController
 
     # loop through milestones in params and create new
     # database data
-    paramsIndex = 1
     params["goal"]["milestones_attributes"].each do | key, value |
       begin
         puts value["id"].to_i()
         @databaseGoal.milestones.find(value["id"].to_i())
       rescue
         newMilestone = @databaseGoal.milestones.build(value);
-        newMilestone.position = paramsIndex;
+        newMilestone.position = key.to_i();
         newMilestone.save()
       end
-      paramsIndex += 1
     end
 
     redirect_to @databaseGoal
