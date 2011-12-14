@@ -1,14 +1,18 @@
-<h1>Achieve your goals</h1>
-<h2>A community for creating, sharing, and pursuing your goals</h2>
-<body>
+<% if signed_in? %>
+  <%= link_to "user profile", current_user %>
+<% else %>
+  <h1>Achieve your goals</h1>
+  <h2>A community for creating, sharing, and pursuing your goals</h2>
+  <body>
     <%= form_for(:session) do |f| %>
-       <div class="field">
-       <%= f.label :Search %><br />
-       <%= f.text_field :Search, :placeholder => "Find your goal" %>
-       </div>
-       <div class="actions">
-         <%= f.submit "Find" %>
-       </div>
-    <% end %>
+    <div class="field">
+      <%= f.label :Search %><br />
+      <%= f.text_field :Search, :placeholder => "Find your goal" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Find" %>
+    </div>
+  <% end %>
 </body>
+<% end %>
  

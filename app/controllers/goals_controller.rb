@@ -13,7 +13,7 @@ class GoalsController < ApplicationController
   end
 
   def create
-    @goal = Goal.new(params[:goal])
+    @goal = current_user.goals.build(params[:goal])
 
     index = 0
     @goal.milestones.each do |i|

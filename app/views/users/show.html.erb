@@ -3,9 +3,20 @@
     <td class="main">
       <h1><%= @user.name %></h1> <br>
       <h2><%= @user.username %></h2> <br>
-      <%= profilePicture %>
-      <%= link_to "Account Settings", accountSettings_path %>
+      <%= profilePicture %> <br>
       <%= link_to "Create Goal", newGoal_path %>
+      <%= link_to "Account Settings", accountSettings_path %> <br>
     </td>    
+    
+    <div>
+      <% unless @goals.empty?%>
+        <table class="goals" summary="User goals">
+          <% @goals.each do | goal | %>
+          <li><%= link_to goal.title, goal %></li> 
+          <% end %>
+        </table>
+        <%= will_paginate @goals %>
+      <% end %>
+    </div>
   </tr>
 </table>
