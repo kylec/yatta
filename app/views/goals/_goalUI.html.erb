@@ -13,8 +13,9 @@
       <%= f.fields_for :milestones, :include_id => false do |builder| %>
         <li class ="round milefields">
           <div class="fadebox">
-            <button class="add" type="button">+</button>
+            <button class="add_top" type="button">+</button>
             <button class="remove" type="button">x</button>
+            <button class="add_bottom" type="button">-</button>
           </div>
           <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %>  <br/>
           <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
@@ -60,8 +61,27 @@
         }
       );
 
-      // add
-      $(".add").live("click",
+      // add_top
+      $(".add_top").live("click",
+        function(evt){
+          var entered = evt.target;
+
+          while (entered.tagName != "LI") {
+            entered = entered.parentNode;
+          }
+          var newElem = $(entered).clone();
+          newElem.find('input').val('');
+          newElem.find('textarea').val('');
+          // remove the hidden ID input field
+          //newElem.find('.hiddenInput').remove();
+          $(entered).before(newElem);
+          renumberMilestones();
+          $(document).ready();
+        }
+      );
+      
+      // add_bottom
+      $(".add_bottom").live("click",
         function(evt){
           var entered = evt.target;
 
