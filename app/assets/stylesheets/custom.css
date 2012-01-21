@@ -227,3 +227,8 @@ span.description {
         position: absolute;
 
 }
+
+.search-bar {
+  float:right;
+  margin-right:100px;
+}
