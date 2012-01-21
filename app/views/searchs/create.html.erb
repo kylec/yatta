@@ -1,0 +1,9 @@
+<h1>Search Results</h1>
+<% @result_list.each do |result| %>
+<div>
+  <%= link_to result.title, result %>
+</div>
+<div>
+  <%= result.description %>
+</div>
+<% end %>
