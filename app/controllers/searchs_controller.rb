@@ -4,13 +4,15 @@ class SearchsController < ApplicationController
   end
   
   def create
-    puts param[:search][:find]
-    result_list = Goal.find_with_index(param[:search][:find])
-    redirect :action => "results", :values => result_list
+    puts params[:search][:find]
+    puts 'test'
+    @result_list = Goal.with_query(params[:search][:find])
+    @result_list.each do |result|
+      puts result.title
+      puts result.description
+    end
+    
   end
 
-  def results
-    puts param[:values]
-  end
   
 end

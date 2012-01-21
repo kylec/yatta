@@ -7,7 +7,8 @@ GoalAppAlbert::Application.routes.draw do
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
   resources :goals,    :only => [:new, :create, :show, :update, :destroy]
-  
+  resources :searchs, :only => [:create, :results]
+
   root :to => "pages#home"
   
   match '/signup',          :to => 'users#new'
@@ -23,7 +24,7 @@ GoalAppAlbert::Application.routes.draw do
   match '/privacy',         :to => 'pages#home'
   match '/terms',           :to => 'pages#home'
   match '/accountSettings', :to => 'pages#home'
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
