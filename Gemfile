@@ -9,6 +9,8 @@ gem 'rails', '3.1.0'
 gem 'mysql2'
 gem "acts_as_list"
 gem "will_paginate"
+gem "acts_as_indexed"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

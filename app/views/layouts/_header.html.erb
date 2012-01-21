@@ -6,10 +6,10 @@
       <%= link_to "Sign out", signout_path, :method => :delete %>
     </div>
     <div class="search-bar">
-      <%= form_for(:session) do |f| %>
+      <%= form_for(:search, :url => searchs_path) do |f1| %>
         <div class="field">
-          <%= f.text_field :Search, :placeholder => "Find your goal" %>
-          <%= f.submit "Find" %>
+          <%= f1.text_field :find, :placeholder => "Find your goal" %>
+          <%= f1.submit "Find" %>
         </div>   
       <% end %>
     </div>

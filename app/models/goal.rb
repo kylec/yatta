@@ -1,4 +1,5 @@
 class Goal < ActiveRecord::Base
+  acts_as_indexed :fields => [:title] 
 	attr_accessible :user_id, :title, :description, :milestones_attributes
 	belongs_to :user
 	

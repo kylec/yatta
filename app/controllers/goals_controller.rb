@@ -93,7 +93,7 @@ class GoalsController < ApplicationController
 
     redirect_to @databaseGoal
   end
-
+  
   private
 
     def authorized_user
