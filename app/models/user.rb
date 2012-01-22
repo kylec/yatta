@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	has_many :goals, :dependent => :destroy # refers to created goals
 	has_many :user_goal_relationships, :foreign_key => "user_id", :dependent => :destroy
   
-  has_many :workingGoals, :through => :user_goal_relationships, :source => :goal_id 
+  has_many :workingGoals, :through => :user_goal_relationships, :source => :goal
   													 
   validates :name, :presence => true,
                    :length   => { :maximum => 50 }
@@ -52,6 +52,18 @@ class User < ActiveRecord::Base
     (user && user.salt == cookie_salt) ? user : nil
   end
 
+  def work! (workingGoal)
+    user_goal_relationships.create!(:goal_id => workingGoal.id)
+  end
+
+  def stopWork! (workingGoal)
+    user_goal_relationships.find_by_goal_id(workingGoal).destroy
+  end
+
+  def working? (workingGoal)
+    user_goal_relationships.find_by_goal_id(workingGoal)
+  end
+
   private
 
     def encrypt_password
@@ -70,5 +82,4 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
-
 end

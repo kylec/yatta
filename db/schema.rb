@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120202144) do
+ActiveRecord::Schema.define(:version => 20120122205656) do
 
   create_table "goals", :force => true do |t|
     t.string   "user_id"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(:version => 20111120202144) do
     t.string   "title"
     t.string   "description"
     t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_goal_milestone_relationships", :force => true do |t|
+    t.integer  "user_goal_relationship_id"
+    t.integer  "milestone_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

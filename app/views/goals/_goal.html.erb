@@ -1,38 +1,12 @@
-<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js", "rails.js" %>
-<style>
-
-  #milestones { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-
-</style>
-
 <h1><%= @goal.title %></h1>
 <h2><%= @goal.description %></h2>
-  <div id="milestones"> <% @goal.milestones.each do |milestone| %>
-    <li><div id="milestone_<%= milestone.id %>" class="portlet">
-      <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> <br> </div>
-      <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.description %> </div>
-    </div></li>
-  <% end %>
-  </div>
-<% #= render :partial => 'milestones/milestone', :collection => goal.milestones%>
-
-
-<% content_for :javascript do %>
-  <% javascript_tag do %>
-     $('#milestones').sortable(
-        {
-          axis: 'y',
-          dropOnEmpty:false,
-          cursor: 'crosshair',
-          items: 'li',
-          opacity: 0.4,
-          scroll: true
-        })
-      
-    $('.editable').click(function(evt) {
-      var clicked = evt.target;
-      var mid = clicked.id
-        $(mid).replaceWith('<textbox></textbox>');
-      })
+  <div id="milestones">
+    <% @goal.milestones.each do |milestone| %>
+      <li>
+        <div id="milestone_<%= milestone.id %>" class="portlet">
+          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> <br> </div>
+          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.description %> </div>
+        </div>
+      </li>
     <% end %>
-<% end %>
+  </div>
