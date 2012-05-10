@@ -9,6 +9,7 @@ GoalAppAlbert::Application.routes.draw do
   resources :goals,    :only => [:new, :create, :show, :update, :destroy]
   resources :searchs, :only => [:create, :results]
   resources :user_goal_relationships, :only => [:create, :destroy]
+  resources :user_goal_milestone_relationships, :only => [:create, :destroy]
 
   root :to => "pages#home"
   

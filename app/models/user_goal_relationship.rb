@@ -3,7 +3,14 @@ class UserGoalRelationship < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :goal
-  
+
+  has_many :user_goal_milestone_relationships, :dependent => :destroy
+
   validates :user_id, :presence => true
   validates :goal_id, :presence => true
+
+  def hasMilestone? (milestoneCheck)
+    user_goal_milestone_relationships.find_by_milestone_id(milestoneCheck)
+  end
+
 end

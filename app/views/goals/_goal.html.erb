@@ -4,8 +4,23 @@
     <% @goal.milestones.each do |milestone| %>
       <li>
         <div id="milestone_<%= milestone.id %>" class="portlet">
-          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> <br> </div>
-          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.description %> </div>
+          
+          <% if @userGoalRelationship != nil %>
+            <% userGoalMilestone = @userGoalRelationship.hasMilestone?(milestone) %>
+            <% if userGoalMilestone %>
+              <%= form_for userGoalMilestone, :html => {:method => :delete} do |f| %>
+                <div class="actions"><%= f.submit "Complete" %></div>
+              <% end %>
+            <% else %>
+              <%= form_for (@userGoalRelationship.user_goal_milestone_relationships.build(:milestone_id => milestone.id)) do |f| %>
+                <div><%= f.hidden_field :milestone_id %></div>
+                <div class="actions"><%= f.submit "Incomplete" %></div>
+              <% end %>
+            <% end %>
+          <% end %>  
+
+          <%= milestone.title %> <br>
+          <%= milestone.description %>
         </div>
       </li>
     <% end %>
