@@ -1,6 +1,8 @@
 
 <%= render :partial => 'goal', :object => @goal %>
-<%= button_to  "Edit Goal", :action => "edit", :id => @goal.id %>
+<% if current_user.created?(@goal) %>
+  <%= button_to  "Edit Goal", :action => "edit", :id => @goal.id %>
+<% end %>
 <% if current_user.working?(@goal) %>
   <%= form_for current_user.user_goal_relationships.find_by_goal_id(@goal),
                    :html => {:method => :delete} do |f| %>

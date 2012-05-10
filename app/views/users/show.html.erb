@@ -6,9 +6,10 @@
       <%= profilePicture %> <br>
       <%= link_to "Create Goal", newGoal_path %>
       <%= link_to "Account Settings", accountSettings_path %> <br>
-    </td>    
+    </td>
     
-    <div>
+    <td>
+      <p>My Created Goals</p>
       <% unless @goals.empty?%>
         <table class="goals" summary="User goals">
           <% @goals.each do | goal | %>
@@ -17,6 +18,19 @@
         </table>
         <%= will_paginate @goals %>
       <% end %>
-    </div>
+    </td>
+
+    <td>
+      <p>My Following Goals</p>
+      <% unless @workingGoals.empty?%>
+        <table class="goals" summary="Working goals">
+          <% @workingGoals.each do | goal | %>
+          <li><%= link_to goal.title, goal %></li>
+          <% end %>
+        </table>
+        <%= will_paginate @workingGoals %>
+      <% end %>
+    </td>
+
   </tr>
 </table>

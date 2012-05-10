@@ -1,0 +1,106 @@
+diff --git a/app/controllers/goals_controller.rb b/app/controllers/goals_controller.rb
+index b55959c..d0f9ee8 100644
+--- a/app/controllers/goals_controller.rb
++++ b/app/controllers/goals_controller.rb
+@@ -37,6 +37,8 @@ class GoalsController < ApplicationController
+     @title = "Goal"
+     @goal = Goal.find(params[:id])
+     @goal.milestones.sort_by!(&:position)
++
++    @isCurrentUserWorking = current_user.working?(@goal)
+   end
+ 
+   def edit
+@@ -93,7 +95,11 @@ class GoalsController < ApplicationController
+ 
+     redirect_to @databaseGoal
+   end
+-  
++
++  def workMilestone
++    puts "FUCKKKK YEAAAAA!!!"
++  end
++
+   private
+ 
+     def authorized_user
+diff --git a/app/models/milestone.rb b/app/models/milestone.rb
+index 1360386..d152ce2 100644
+--- a/app/models/milestone.rb
++++ b/app/models/milestone.rb
+@@ -3,6 +3,8 @@ class Milestone < ActiveRecord::Base
+   
+   belongs_to :goal
+ 
++  has_many :user_goal_milestone_relationships, :foreign_key => "milestone_id", :dependent => :destroy
++
+   acts_as_list
+   
+   validates :title, :presence => true,
+diff --git a/app/models/user_goal_milestone_relationship.rb b/app/models/user_goal_milestone_relationship.rb
+index fdaa9b8..0453b61 100644
+--- a/app/models/user_goal_milestone_relationship.rb
++++ b/app/models/user_goal_milestone_relationship.rb
+@@ -2,4 +2,8 @@ class UserGoalMilestoneRelationship < ActiveRecord::Base
+   attr_accessible :user_goal_relationship_id, :milestone_id
+ 
+   belongs_to :user_goal_relationship
++  belongs_to :milestone
++
++  validates :user_goal_relationship_id, :presence => true
++  validates :milestone_id, :presence => true
+ end
+diff --git a/app/models/user_goal_relationship.rb b/app/models/user_goal_relationship.rb
+index 03353b7..4317a3c 100644
+--- a/app/models/user_goal_relationship.rb
++++ b/app/models/user_goal_relationship.rb
+@@ -1,6 +1,8 @@
+ class UserGoalRelationship < ActiveRecord::Base
+ 	attr_accessible :goal_id
+-  
++
++  has_many :user_goal_milestone_relationships, :foreign_key => "user_goal_relationship_id", :dependent => :destroy
++
+   belongs_to :user
+   belongs_to :goal
+   
+diff --git a/app/views/goals/_goal.html.erb b/app/views/goals/_goal.html.erb
+index f781de6..486572a 100644
+--- a/app/views/goals/_goal.html.erb
++++ b/app/views/goals/_goal.html.erb
+@@ -1,12 +1,14 @@
+-<h1><%= @goal.title %></h1>
+-<h2><%= @goal.description %></h2>
++#gay shit ass code, wtf is ruby, godam this is gay
++#make user_goal_milestone_controller for this shhhieeett
++<%= form_for @goal, :url => { :action => "workMilestone" } do |f| %>
++  <h1><%= @goal.title %></h1>
++  <h2><%= @goal.description %></h2>
+   <div id="milestones">
+     <% @goal.milestones.each do |milestone| %>
+-      <li>
+-        <div id="milestone_<%= milestone.id %>" class="portlet">
+-          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.title %> <br> </div>
+-          <div class="editable" id="edit_<%= milestone.id %>" contenteditable="true"><%= milestone.description %> </div>
+-        </div>
+-      </li>
++      <%= f.check_box "goal[checkBox]" %>
++      <div><%= milestone.title %></div>
++      <div><%= milestone.description %></div>
+     <% end %>
+   </div>
++  <%= f.submit "Update" %>
++<% end %>
+diff --git a/config/routes.rb b/config/routes.rb
+index 758a3b9..4080ea8 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -6,7 +6,7 @@ GoalAppAlbert::Application.routes.draw do
+ 
+   resources :users
+   resources :sessions, :only => [:new, :create, :destroy]
+-  resources :goals,    :only => [:new, :create, :show, :update, :destroy]
++  resources :goals,    :only => [:new, :create, :show, :update, :destroy, :workMilestone]
+   resources :searchs, :only => [:create, :results]
+   resources :user_goal_relationships, :only => [:create, :destroy]
+ 

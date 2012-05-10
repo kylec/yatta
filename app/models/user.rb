@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
     user_goal_relationships.find_by_goal_id(workingGoal)
   end
 
+  def created? (createdGoal)
+    begin
+      goals.find(createdGoal)
+    rescue
+      false
+    end
+  end
+
   private
 
     def encrypt_password

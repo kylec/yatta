@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @goals= @user.goals.paginate(:page => params[:page])
     @title = @user.name
+    @workingGoals = @user.workingGoals.paginate(:page => params[:page])
   end
   
   def new
