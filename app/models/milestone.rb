@@ -3,6 +3,10 @@ class Milestone < ActiveRecord::Base
   
   belongs_to :goal
 
+  has_many :reverse_user_goal_milestone_relationships, :foreign_key => "milestone_id",
+                                   :class_name => "UserGoalMilestoneRelationship",
+                                   :dependent => :destroy
+                                   
   acts_as_list
   
   validates :title, :presence => true,

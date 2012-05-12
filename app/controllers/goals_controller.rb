@@ -84,10 +84,11 @@ class GoalsController < ApplicationController
     params["goal"]["milestones_attributes"].each do | key, value |
       begin
         puts value["id"].to_i()
-        @databaseGoal.milestones.find(value["id"].to_i())
+        foundMilestone = @databaseGoal.milestones.find(value["id"].to_i())
+        foundMilestone.update_attributes(value)
       rescue
-        newMilestone = @databaseGoal.milestones.build(value);
-        newMilestone.position = key.to_i();
+        newMilestone = @databaseGoal.milestones.build(value)
+        newMilestone.position = key.to_i()
         newMilestone.save()
       end
     end
