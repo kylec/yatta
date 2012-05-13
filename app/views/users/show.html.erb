@@ -25,12 +25,32 @@
       <% unless @workingGoals.empty?%>
         <table class="goals" summary="Working goals">
           <% @workingGoals.each do | goal | %>
-          <li><%= link_to goal.title, goal %></li>
+          <li><%= link_to goal.title, goal %>
+            <% @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(goal) %>
+            <% doneMilestones = @userGoalRelationship.user_goal_milestone_relationships.count() %>
+            <% totalMilestones = goal.milestones.count() %>
+            <% @progress=(doneMilestones*100)/totalMilestones %>
+            <div class="progressbar" rel="<%=@progress%>"></div>
+          </li>
           <% end %>
         </table>
-        <%= will_paginate @workingGoals %>
+        <%= will_paginate @workingGoals %>      
       <% end %>
     </td>
 
   </tr>
 </table>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("div.progressbar").each (function () {
+      var element = this;
+      $(element).progressbar({
+        value: parseInt($(element).attr("rel"))
+      });
+    });
+  });
+</script>
