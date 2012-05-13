@@ -29,7 +29,11 @@
             <% @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(goal) %>
             <% doneMilestones = @userGoalRelationship.user_goal_milestone_relationships.count() %>
             <% totalMilestones = goal.milestones.count() %>
-            <% @progress=(doneMilestones*100)/totalMilestones %>
+            <% if (totalMilestones == 0) %>
+              <% @progress = 0 %>
+            <% else %>
+              <% @progress=(doneMilestones*100)/totalMilestones %>
+            <% end %>
             <div class="progressbar" rel="<%=@progress%>"></div>
           </li>
           <% end %>
