@@ -1,0 +1,33 @@
+<%= form_for @goal do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="allgoalinfo">
+    <div class="round goalfields">
+      <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
+      <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
+    </div>
+    <div id="milestones">
+      <% idcounter = 0 %>
+      <% @goal.milestones.build() %>
+      <%= f.fields_for :milestones, :include_id => false do |builder| %>
+        <li class ="round milefields">
+          <div class="fadebox">
+            <button class="add_top" type="button">+</button>
+            <button class="remove" type="button">x</button>
+            <button class="add_bottom" type="button">-</button>
+          </div>
+          <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %>  <br/>
+          <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
+          <%= builder.hidden_field :id, :value => @goal.milestones[idcounter].id, :class => "hiddenInput" %>
+        </li>
+        <% idcounter += 1 %>
+      <% end %>
+    </div>
+    <div class="actions">
+      <% if (@title == GoalsHelper::CREATE_TITLE) %>
+        <%= f.submit "Create" %>
+      <% elsif (@title == GoalsHelper::EDIT_TITLE) %>
+        <%= f.submit "Update" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

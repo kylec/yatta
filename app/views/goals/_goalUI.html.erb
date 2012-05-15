@@ -1,6 +1,6 @@
 <%= javascript_include_tag "http://code.jquery.com/jquery-1.7.1.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "rails.js" %>
 
-<div id="goaldebug"></div>
+<div id="goal">
 <%= form_for @goal do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="allgoalinfo">
@@ -8,6 +8,9 @@
       <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
       <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
     </div>
+    <% if (@goal.milestones.count == 0) %>
+    <div class="add_milestone_box">Click to start a milestone!</div>  
+    <% else %>
     <div id="milestones">
       <% idcounter = 0 %>
       <%= f.fields_for :milestones, :include_id => false do |builder| %>
@@ -24,6 +27,7 @@
         <% idcounter += 1 %>
       <% end %>
     </div>
+    <% end %>
     <div class="actions">
       <% if (@title == GoalsHelper::CREATE_TITLE) %>
         <%= f.submit "Create" %>
@@ -33,7 +37,7 @@
     </div>
   </div>
 <% end %>
-
+</div>
 
 <% content_for :javascript do %>
   <% javascript_tag do %>
@@ -61,6 +65,12 @@
         }
       );
 
+      $(".add_milestone_box").live("click",
+        function(){
+          $("#goal").html("<%= escape_javascript render :partial => 'milestoneUI', :object => @goal %>");
+        }
+      );
+      
       // add_top
       $(".add_top").live("click",
         function(evt){
