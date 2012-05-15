@@ -178,16 +178,26 @@ span.description {
   resize: none;
 }
 
+.add_milestone_box {
+  border: dotted 1px black;
+  width: 200px;
+  height: 100px;
+  position: relative;
+  left: 50%;
+  margin-left: -100px;
+  margin-bottom: 15px;
+}
+
 .milefields {
-    width: 450px;
-    height: 200px;
-    position: relative;
-    left: 50%;
-    margin-left: -225px;
-    padding: 1% 1px 1% 1px;
-    background-color: white;
-    margin-bottom: 15px;
-    list-style-type: none; 
+  width: 450px;
+  height: 200px;
+  position: relative;
+  left: 50%;
+  margin-left: -225px;
+  padding: 1% 1px 1% 1px;
+  background-color: white;
+  margin-bottom: 15px;
+  list-style-type: none; 
 }
 
 .miletitleinput {

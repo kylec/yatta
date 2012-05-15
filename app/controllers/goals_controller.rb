@@ -49,50 +49,68 @@ class GoalsController < ApplicationController
   def update
     # get the database goal data
     @databaseGoal = Goal.find(params[:id])
+    if (@databaseGoal.title.to_s != params["goal"]["title"].to_s) 
+      @databaseGoal.title = params["goal"]["title"].to_s
+      @databaseGoal.save
+    end
+    
+    if (@databaseGoal.description.to_s != params["goal"]["description"].to_s) 
+      @databaseGoal.description = params["goal"]["description"].to_s
+      @databaseGoal.save
+    end
+    
+    currentMilestones = params["goal"]["milestones_attributes"]
 
-    # delete out goals from originalGoal that were removed
-    # from the form
-    @databaseGoal.milestones.each do | milestone |
-      foundKeyValue = nil
-      foundValue = nil
-      params["goal"]["milestones_attributes"].each do | key, value |
-        if (value["id"].to_i() == milestone.id)
-           foundKeyValue = key
-           foundValue = value
-           break
+    if (currentMilestones != nil)
+      # delete out goals from originalGoal that were removed
+      # from the form
+      @databaseGoal.milestones.each do | milestone |
+        foundKeyValue = nil
+        foundValue = nil
+
+        currentMilestones.each do | key, value |
+          if (value["id"].to_i() == milestone.id)
+            foundKeyValue = key
+            foundValue = value
+            break
+          end
+        end
+      
+        if (foundValue == nil)
+          # if not found in form, remove from database
+          milestone.destroy()
+        else
+          # remove the id key since updating the id is a no-no
+          tempFoundValue = Hash.new(foundValue)
+          tempFoundValue.delete("id")
+        
+          # update the position
+          tempFoundValue["position"] = foundKeyValue.to_i()
+
+          # if found, update database with values from the form
+          milestone.update_attributes(tempFoundValue)
         end
       end
 
-      if (foundValue == nil)
-        # if not found in form, remove from database
+      # loop through milestones in params and create new
+      # database data
+      currentMilestones.each do | key, value |
+        begin
+          foundMilestone = @databaseGoal.milestones.find(value["id"].to_i())
+          foundMilestone.update_attributes(value)
+        rescue
+          newMilestone = @databaseGoal.milestones.build(value)
+          newMilestone.position = key.to_i()
+          newMilestone.save()
+        end
+      end
+    else 
+      # user deleted all milestone
+      @databaseGoal.milestones.each do | milestone |
         milestone.destroy()
-      else
-        # remove the id key since updating the id is a no-no
-        tempFoundValue = Hash.new(foundValue)
-        tempFoundValue.delete("id")
-        
-        # update the position
-        tempFoundValue["position"] = foundKeyValue.to_i()
-
-        # if found, update database with values from the form
-        milestone.update_attributes(tempFoundValue)
       end
     end
-
-    # loop through milestones in params and create new
-    # database data
-    params["goal"]["milestones_attributes"].each do | key, value |
-      begin
-        puts value["id"].to_i()
-        foundMilestone = @databaseGoal.milestones.find(value["id"].to_i())
-        foundMilestone.update_attributes(value)
-      rescue
-        newMilestone = @databaseGoal.milestones.build(value)
-        newMilestone.position = key.to_i()
-        newMilestone.save()
-      end
-    end
-
+    
     redirect_to @databaseGoal
   end
   
