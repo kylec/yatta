@@ -33,6 +33,8 @@
         <%= f.submit "Create" %>
       <% elsif (@title == GoalsHelper::EDIT_TITLE) %>
         <%= f.submit "Update" %>
+      <% else %> 
+        <%= f.submit "Create" %>
       <% end %>
     </div>
   </div>
