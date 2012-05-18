@@ -6,9 +6,9 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
-    3.times do |i| 
-      milestone = @goal.milestones.build()
-    end
+    #3.times do |i| 
+    #  milestone = @goal.milestones.build()
+    #end
     @title = GoalsHelper::CREATE_TITLE
   end
 

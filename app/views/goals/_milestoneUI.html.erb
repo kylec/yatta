@@ -5,9 +5,22 @@
       <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
       <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
     </div>
+
+      <% if ((click == 1) || (@goal.milestones.count > 0)) %>
+        <div class="add_milestone_box" hidden="nothidden">Click to start a milestone click is 1!</div>  
+      <% else %>
+        <div class="add_milestone_box">Click to start a milestone click is 0!</div>  
+      <% end %>
     <div id="milestones">
       <% idcounter = 0 %>
-      <% @goal.milestones.build() %>
+      <% if (click == 1) %>
+        click is <%= click %>
+        <% @goal.milestones.each do |milestone| %>
+          <% milestone.destroy() %>
+        <% end %>
+        how many milestone do i have <%= @goal.milestones.count() %>
+        <% @goal.milestones.build() %>
+      <% end %>
       <%= f.fields_for :milestones, :include_id => false do |builder| %>
         <li class ="round milefields">
           <div class="fadebox">
@@ -27,6 +40,8 @@
         <%= f.submit "Create" %>
       <% elsif (@title == GoalsHelper::EDIT_TITLE) %>
         <%= f.submit "Update" %>
+      <% else %> 
+        <%= f.submit "Create" %>
       <% end %>
     </div>
   </div>

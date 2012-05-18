@@ -1,44 +1,7 @@
 <%= javascript_include_tag "http://code.jquery.com/jquery-1.7.1.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js", "rails.js" %>
 
 <div id="goal">
-<%= form_for @goal do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-  <div class="allgoalinfo">
-    <div class="round goalfields">
-      <%= f.text_field :title, :class => "round goaltitleinput goalfont", :placeholder => "Enter Goal Title" %><br>
-      <%= f.text_area  :description, :class => "round goaldescinput goalfont", :placeholder => "Enter Goal Description" %><br>
-    </div>
-    <% if (@goal.milestones.count == 0) %>
-    <div class="add_milestone_box">Click to start a milestone!</div>  
-    <% else %>
-    <div id="milestones">
-      <% idcounter = 0 %>
-      <%= f.fields_for :milestones, :include_id => false do |builder| %>
-        <li class ="round milefields">
-          <div class="fadebox">
-            <button class="add_top" type="button">+</button>
-            <button class="remove" type="button">x</button>
-            <button class="add_bottom" type="button">-</button>
-          </div>
-          <%= builder.text_field :title, :class => "round miletitleinput goalfont", :placeholder => "Enter Title" %>  <br/>
-          <%= builder.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
-          <%= builder.hidden_field :id, :value => @goal.milestones[idcounter].id, :class => "hiddenInput" %>
-        </li>
-        <% idcounter += 1 %>
-      <% end %>
-    </div>
-    <% end %>
-    <div class="actions">
-      <% if (@title == GoalsHelper::CREATE_TITLE) %>
-        <%= f.submit "Create" %>
-      <% elsif (@title == GoalsHelper::EDIT_TITLE) %>
-        <%= f.submit "Update" %>
-      <% else %> 
-        <%= f.submit "Create" %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+  <%= render :partial => 'milestoneUI', :locals => {:goal => @goal, :click => 0} %>
 </div>
 
 <% content_for :javascript do %>
@@ -62,14 +25,20 @@
           while (entered.tagName != "LI") {
             entered = entered.parentNode;
           }
+                  
           $(entered).remove();
-          renumberMilestones();
+          renumberMilestones();          
+          
+          if ($(".milefields").length == 0) {
+            $(".add_milestone_box").removeAttr("hidden");  
+          }
+          $(document).ready();
         }
       );
 
       $(".add_milestone_box").live("click",
         function(){
-          $("#goal").html("<%= escape_javascript render :partial => 'milestoneUI', :object => @goal %>");
+          $("#goal").html("<%= escape_javascript render :partial => 'milestoneUI', :locals => {:goal => @goal, :click => 1} %>");
         }
       );
       
