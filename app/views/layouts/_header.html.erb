@@ -1,6 +1,5 @@
 <header>
   <%= link_to logo, root_path %>
-  
   <% if signed_in? %>
     <div class="right">
       <%= link_to "Sign out", signout_path, :method => :delete %>
@@ -13,7 +12,6 @@
         </div>   
       <% end %>
     </div>
-      
   <% else %>
     <div class="right">
     <%= form_for(:session, :url => sessions_path) do |f| %>
