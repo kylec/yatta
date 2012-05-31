@@ -1,17 +1,34 @@
 .container {
-  width: 710px;
+  width: 900px;
+  margin: 0 auto;
 }
 
 body {
-  background: #cff;
+  background: #F1EBE4;
+  margin: 0 auto;
+  font-family: fantasy;
+  background: url("mountain1.jpeg");
 }
 
 header {
   padding-top: 20px;
+  background: #1D1F21;
+}
+
+.mainTop {
+  font-family: fantasy;
+  width: 900px;
+  margin: 0 auto;
 }
 
 header img {
-  background: #fff;
+
+}
+
+.loginButton {
+  color: #FFFFFF;
+  background-color: #0676E6;
+
 }
 
 section {
@@ -47,7 +64,7 @@ nav {
 }
 
 nav {
-  background-color: white;
+
   padding: 0 0.7em;
   white-space: nowrap;
 }
@@ -66,14 +83,22 @@ nav ul li {
 nav ul li a {
   padding: 0 5px;
   font-weight: bold;
+  font-size: 80%;
 }
 
 nav ul li a:visited {
-  color: #09c;
+  color: #000;
 }
 
 nav ul li a:hover {
   text-decoration: underline;
+}
+
+.login a {
+  font-size: 60%;
+  border: 0;
+  padding: 0em;
+  color: #CCCCCC;
 }
 
 .right {
@@ -86,6 +111,12 @@ nav ul li a:hover {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
   border-radius:         10px;
+}
+
+.smoothCorner {
+  -moz-border-radius:    3px;
+  -webkit-border-radius: 3px;
+  border-radius:         3px;
 }
 
 /* footer */
@@ -240,4 +271,29 @@ span.description {
 .search-bar {
   float:right;
   margin-right:100px;
+}
+
+#statement {
+  height: 300px;
+  padding-left: 50px;
+  padding-right: 100px;
+
+}
+
+#homeSearchBox {
+  height: 300px;
+  padding-left: 10px;
+  padding-right: 25px;
+}
+
+#homeSearchField {
+  height: 35px;
+  width: 300px;
+  font-size: 25px;
+}
+
+#homeSearchButton {
+  height: 35px;
+  width: 40px;
+  font-size: 15px;
 }
