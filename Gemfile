@@ -6,7 +6,6 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-gem "pg"
 gem 'mysql2'
 gem "acts_as_list"
 gem "will_paginate"
@@ -30,6 +29,11 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg"
+end
 
 group :development do
   gem 'rspec-rails', '2.6.1'
