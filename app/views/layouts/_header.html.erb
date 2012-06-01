@@ -15,20 +15,7 @@
       </div>
     <% else %>
       <div class="login right">
-      <%= form_for(:session, :url => sessions_path) do |f| %>
-        <table>
-          <tr>
-            <th><%= f.text_field :email, :placeholder => "Email", :class=>"smoothCorner" %></th>
-            <th><%= f.password_field :password, :placeholder => "Password", :class=>"smoothCorner" %></th>
-            <th><%= f.submit "Log In", :class=>"loginButton smoothCorner" %></th>
-          </tr>
-          <tr>
-            <th></th>
-            <th><%= link_to "Forgot password?", forgotpassword_path %></th>
-            <th><%= link_to "Sign up", signup_path %></th>
-          </tr>
-        </table>
-      <% end %>
+        <%= link_to "Login", signin_path %>
       </div>
     <% end %>
   </div>

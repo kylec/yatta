@@ -7,7 +7,6 @@ body {
   background: #F1EBE4;
   margin: 0 auto;
   font-family: helvetica;
-  background: url("mountain1.jpeg");
 }
 
 header {
@@ -19,7 +18,7 @@ header {
   font-family: helvetica;
   width: 900px;
   margin: 0 auto;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 header img {
@@ -96,10 +95,8 @@ nav ul li a:hover {
 }
 
 .login a {
-  font-size: 60%;
-  border: 0;
-  padding: 0em;
-  color: #CCCCCC;
+  border-top: 100px;
+  color: #FFFFFF;
 }
 
 .right {
@@ -123,7 +120,7 @@ nav ul li a:hover {
 /* footer */
 footer {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 100px;
   width: 710px;
   margin-left: auto;
   margin-right: auto;
@@ -297,4 +294,12 @@ span.description {
   height: 35px;
   width: 40px;
   font-size: 15px;
+}
+
+#homeBody {
+  background: url("homePic.png") no-repeat right center fixed;
+  -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }

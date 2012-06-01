@@ -1,13 +1,16 @@
 <table class="profile" summary="Profile information">
-  <tr>
-    <td class="main">
-      <h1><%= @user.name %></h1> <br>
-      <h2><%= @user.username %></h2> <br>
-      <%= profilePicture %> <br>
+  <div class="main">
+    <tr>
+      <td><%= profilePicture %></td>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
       <%= link_to "Create Goal", newGoal_path %>
-      <%= link_to "Account Settings", accountSettings_path %> <br>
-    </td>
-    
+    </tr>
+  </div>
+
+  <div>
+  <tr>
     <td>
       <p>My Created Goals</p>
       <% unless @goals.empty?%>
@@ -43,6 +46,7 @@
     </td>
 
   </tr>
+  </div>
 </table>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
