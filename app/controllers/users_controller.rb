@@ -4,9 +4,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @goals= @user.goals.paginate(:page => params[:page])
+    @goals= @user.goals
     @title = @user.name
-    @workingGoals = @user.workingGoals.paginate(:page => params[:page])
+    @workingGoals = @user.workingGoals
+    
+    @totalGoals = Hash.new()
+    @goals.each do | goal | 
+      @totalGoals[goal.id] = {:g => goal, :w => false}
+    end
+       
+    @workingGoals.each do | goal |
+      @totalGoals[goal.id] = {:g => goal, :w => true}
+    end
   end
   
   def new

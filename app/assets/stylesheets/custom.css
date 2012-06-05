@@ -303,3 +303,89 @@ span.description {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.notes li {
+  position: relative;
+  width: 200px;
+  min-height: 100px;
+  margin: 25px auto;
+  padding: 35px 15px 15px 15px;
+  background-image: linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
+  background-image: -o-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
+  background-image: -moz-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
+  background-image: -webkit-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
+  background-image: -ms-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
+  background-image: -webkit-gradient(
+	  linear,
+	  left bottom,
+	  left top,
+	  color-stop(0.37, rgb(250,250,123)),
+	  color-stop(0.04, rgb(250,252,207))
+  );
+  
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(0,0,0,.5);
+  -moz-box-shadow: 3px 3px 5px 3px rgba(0,0,0,.5);
+  box-shadow: 3px 3px 5px 3px #ccc;
+  -webkit-transform: rotate(-.5deg);
+  -moz-transform: rotate(-.5deg);
+  -o-transform: rotate(-.5deg);
+}
+
+.notes li:nth-child(even) {
+    -webkit-transform: rotate(.5deg);
+    -moz-transform: rotate(.5deg);
+    -o-transform: rotate(.5deg);
+}
+
+.notes li p {
+    text-align: center;
+    font: normal normal normal 36px/40px 'Reenie Beanie', Helvetica, Arial, sans-serif;
+    color: #000;
+    text-shadow: white 1px 1px 0px;
+    overflow:hidden;
+}
+
+.notes li::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 70px;
+    top: -15px;
+    width: 75px;
+    height: 25px;
+    z-index: 2;
+    background-color: rgba(243,245,228,0.5);
+    border: 2px solid rgba(255,255,255,0.5);
+    -webkit-box-shadow: 0 0 5px #888;
+    -moz-box-shadow: 0 0 5px #888;
+      box-shadow: 3px 3px 5px 3px #ccc;
+    -webkit-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+}
+
+.notes li:nth-child(even)::before {
+    -webkit-transform: rotate(6deg);
+    -moz-transform: rotate(6deg);
+    -o-transform: rotate(6deg);
+}
+
+.goalsCol {
+  vertical-align: top;
+}
+
+.progressPercent {
+  position:absolute;
+  margin-left:90px;
+  margin-top: 3px;
+  text-align:center;
+}
+
+.goalStickyTitle{ 
+  text-align: center;
+  vertical-align: top;
+}

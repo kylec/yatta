@@ -1,52 +1,67 @@
-<table class="profile" summary="Profile information">
-  <div class="main">
-    <tr>
-      <td><%= profilePicture %></td>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <%= link_to "Create Goal", newGoal_path %>
-    </tr>
-  </div>
+<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie&amp;subset=latin' rel='stylesheet' type='text/css'>
 
-  <div>
+<table class="profile" summary="Profile information">
+  <tr>
+    <td><%= profilePicture %></td>
+    <td><%= @user.name %></td>
+  </tr>
   <tr>
     <td>
-      <p>My Created Goals</p>
-      <% unless @goals.empty?%>
-        <table class="goals" summary="User goals">
-          <% @goals.each do | goal | %>
-          <li><%= link_to goal.title, goal %></li> 
-          <% end %>
-        </table>
-        <%= will_paginate @goals %>
-      <% end %>
+      <%= link_to "Create Goal", newGoal_path %>
     </td>
-
-    <td>
-      <p>My Following Goals</p>
-      <% unless @workingGoals.empty?%>
-        <table class="goals" summary="Working goals">
-          <% @workingGoals.each do | goal | %>
-          <li><%= link_to goal.title, goal %>
-            <% @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(goal) %>
-            <% doneMilestones = @userGoalRelationship.user_goal_milestone_relationships.count() %>
-            <% totalMilestones = goal.milestones.count() %>
-            <% if (totalMilestones == 0) %>
-              <% @progress = 0 %>
-            <% else %>
-              <% @progress=(doneMilestones*100)/totalMilestones %>
-            <% end %>
-            <div class="progressbar" rel="<%=@progress%>"></div>
-          </li>
-          <% end %>
-        </table>
-        <%= will_paginate @workingGoals %>      
-      <% end %>
-    </td>
-
   </tr>
-  </div>
+  
+  <tr>
+    <td>  
+      <h1>My Goals</h1>
+    </td>
+  </tr>
+  
+  <tr>
+  <% unless @totalGoals.empty?%>
+    <% totalGoals = @totalGoals.count %>
+    <% firstColNum = totalGoals / 3 %>
+    <% if (@totalGoals.count % 3 != 0) %>
+      <% firstColNum += 1 %>
+    <% end %>
+          
+    <% secondColNum = (totalGoals / 3) %>
+    <% if (@totalGoals.count % 3 == 2) %>
+      <% secondColNum += 1 %>
+    <% end %>
+    <% secondColNum += firstColNum %>
+    <% goalCount = 0 %>
+    <% @totalGoals.each do | k, v | %>
+      <% if (goalCount == 0 || goalCount == firstColNum || goalCount == secondColNum) %>
+        <td class="goalsCol">
+        <ul class="notes">
+      <% end %>
+
+      <% goal = v[:g] %>
+      <li>
+        <div class="goalStickyTitle">
+          <p><%= link_to goal.title, goal %></p>
+        </div>
+        <% if v[:w] %> 
+          <% @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(goal) %>
+          <% doneMilestones = @userGoalRelationship.user_goal_milestone_relationships.count() %>
+          <% totalMilestones = goal.milestones.count() %>
+          <% if (totalMilestones == 0) %>
+            <% @progress = 0 %>
+          <% else %>
+            <% @progress=(doneMilestones*100)/totalMilestones %>
+          <% end %>
+          <div class="progressbar" rel="<%=@progress%>"><span class=progressPercent> <%=@progress%>% </span></div>
+        <% end %>
+      </li>
+      <% if (goalCount == (firstColNum -1) || goalCount == (secondColNum - 1) || goalCount == (totalGoals -1)) %>
+        </ul>
+        </td>
+      <% end %>
+      <% goalCount += 1 %>
+    <% end %>
+  <% end %>
+  </tr>
 </table>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -59,6 +74,9 @@
       $(element).progressbar({
         value: parseInt($(element).attr("rel"))
       });
+      $(element).height(25);
+      $(element).width(150);
+      $(element).css("margin-left", 25);
     });
   });
 </script>

@@ -37,7 +37,7 @@ class GoalsController < ApplicationController
     @title = "Goal"
     @goal = Goal.find(params[:id])
     @goal.milestones.sort_by!(&:position)
-    @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(@goal)
+    @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(@goal) 
   end
 
   def edit
