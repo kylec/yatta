@@ -308,18 +308,22 @@ ul {
   list-style-type: none;
 }
 
+.notes {
+  padding-left: 10px;
+}
+
 .notes li {
   position: relative;
-  width: 200px;
+  width: 180px;
   min-height: 100px;
   margin: 25px auto;
   padding: 35px 15px 15px 15px;
-  background-image: linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
-  background-image: -o-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
-  background-image: -moz-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
-  background-image: -webkit-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
-  background-image: -ms-linear-gradient(bottom, rgb(250,250,123) 37%, rgb(250,252,207) 4%);
-  background-image: -webkit-gradient(
+  background: linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -o-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -moz-linear-gradient(bottom, rgb(245,245,100), rgb(245,247,190));
+  background: -webkit-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -ms-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -webkit-gradient(
 	  linear,
 	  left bottom,
 	  left top,
@@ -341,6 +345,14 @@ ul {
     -o-transform: rotate(.5deg);
 }
 
+@font-face {
+  font-family: 'Reenie Beanie';
+  font-style: normal;
+  font-weight: normal;
+  src:  url('ReenieBeanie.ttf') format('truetype');
+  src:  url('ReenieBeanie.woff') format('woff');
+}
+
 .notes li p {
     text-align: center;
     font: normal normal normal 36px/40px 'Reenie Beanie', Helvetica, Arial, sans-serif;
@@ -353,7 +365,7 @@ ul {
     content: ' ';
     display: block;
     position: absolute;
-    left: 70px;
+    left: 67px;
     top: -15px;
     width: 75px;
     height: 25px;
@@ -379,10 +391,9 @@ ul {
 }
 
 .progressPercent {
-  position:absolute;
-  margin-left:90px;
-  margin-top: 3px;
+  font: normal normal normal 36px/40px 'Reenie Beanie', Helvetica, Arial, sans-serif;
   text-align:center;
+  color: #069;
 }
 
 .goalStickyTitle{ 

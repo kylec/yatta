@@ -1,4 +1,4 @@
-<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie&amp;subset=latin' rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie&amp;subset=latin' rel='stylesheet' type='text/css'>-->
 
 <table class="profile" summary="Profile information">
   <tr>
@@ -20,19 +20,25 @@
   <tr>
   <% unless @totalGoals.empty?%>
     <% totalGoals = @totalGoals.count %>
-    <% firstColNum = totalGoals / 3 %>
-    <% if (@totalGoals.count % 3 != 0) %>
+    <% firstColNum = totalGoals / 4 %>
+    <% if (@totalGoals.count % 4 != 0) %>
       <% firstColNum += 1 %>
     <% end %>
           
-    <% secondColNum = (totalGoals / 3) %>
-    <% if (@totalGoals.count % 3 == 2) %>
+    <% secondColNum = (totalGoals / 4) %>
+    <% if (@totalGoals.count % 4 == 2) %>
       <% secondColNum += 1 %>
     <% end %>
     <% secondColNum += firstColNum %>
+
+    <% thirdColNum = (totalGoals / 4) %>
+    <% if (@totalGoals.count % 4 == 3) %>
+    <% thirdColNum += 1 %>
+    <% end %>
+    <% thirdColNum += secondColNum %>
     <% goalCount = 0 %>
     <% @totalGoals.each do | k, v | %>
-      <% if (goalCount == 0 || goalCount == firstColNum || goalCount == secondColNum) %>
+      <% if (goalCount == 0 || goalCount == firstColNum || goalCount == secondColNum || goalCount == thirdColNum) %>
         <td class="goalsCol">
         <ul class="notes">
       <% end %>
@@ -51,10 +57,11 @@
           <% else %>
             <% @progress=(doneMilestones*100)/totalMilestones %>
           <% end %>
-          <div class="progressbar" rel="<%=@progress%>"><span class=progressPercent> <%=@progress%>% </span></div>
+          <!--<div class="progressbar" rel="<%=@progress%>"><span class=progressPercent> <%=@progress%>% </span></div>-->
+          <div class=progressPercent><%=@progress%>%</div>
         <% end %>
       </li>
-      <% if (goalCount == (firstColNum -1) || goalCount == (secondColNum - 1) || goalCount == (totalGoals -1)) %>
+      <% if (goalCount == (firstColNum -1) || goalCount == (secondColNum - 1) || goalCount == (thirdColNum -1) || goalCount == (totalGoals-1)) %>
         </ul>
         </td>
       <% end %>
@@ -68,6 +75,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script>
+  /*
   $(document).ready(function() {
     $("div.progressbar").each (function () {
       var element = this;
@@ -76,7 +84,8 @@
       });
       $(element).height(25);
       $(element).width(150);
-      $(element).css("margin-left", 25);
+      $(element).css("margin-left", 18);
     });
-  });
+
+  */
 </script>
