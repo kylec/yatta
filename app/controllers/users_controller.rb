@@ -3,7 +3,7 @@ class UsersController < ApplicationController
    before_filter :correct_user, :only => [:edit, :update]
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:id])
     @title = @user.name
     puts params[:goalDisplayOption]
 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Goal App!"
-      redirect_to @user
+      redirect_to :controller => "users", :action => "show", :id => current_user.username
     else
       @title = "Sign up"
       render 'new'
@@ -61,14 +61,14 @@ class UsersController < ApplicationController
   end
 
   def showAllGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.id, :goalDisplayOption=>"All"
+    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"All"
   end
 
   def showActiveGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.id, :goalDisplayOption=>"Active"
+    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Active"
   end
 
   def showCreatedGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.id, :goalDisplayOption=>"Created"
+    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Created"
   end
 end

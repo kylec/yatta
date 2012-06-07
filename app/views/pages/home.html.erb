@@ -1,5 +1,5 @@
 <% if signed_in? %>
-  <%= link_to "user profile", current_user %>
+  <%= link_to "user profile", :controller => "users", :action => "show", :id => current_user.username %>
 <% else %>
   <body  id="homeBody">
     <table>

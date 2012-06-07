@@ -14,7 +14,9 @@ class UserGoalRelationshipsController < ApplicationController
     @goal = UserGoalRelationship.find(params[:id]).goal
     current_user.stopWork!(@goal)
     respond_to do |format|
-      format.html { redirect_to current_user }
+      format.html { 
+        redirect_to :controller => "users", :action => "show", :id => current_user.username
+      }
       format.js
     end
   end

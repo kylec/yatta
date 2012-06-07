@@ -13,6 +13,7 @@ class GoalsController < ApplicationController
   end
 
   def create
+    #todo: check if goal title exists for current_user
     @goal = current_user.goals.build(params[:goal])
 
     index = 0
