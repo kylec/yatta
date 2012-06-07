@@ -26,6 +26,10 @@ GoalAppAlbert::Application.routes.draw do
   match '/privacy',         :to => 'pages#home'
   match '/terms',           :to => 'pages#home'
   match '/accountSettings', :to => 'pages#home'
+
+  match '/allGoals',        :to => 'users#showAllGoals'
+  match '/activeGoals',     :to => 'users#showActiveGoals'
+  match '/createdGoals',     :to => 'users#showCreatedGoals'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
