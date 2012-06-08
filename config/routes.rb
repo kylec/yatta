@@ -4,10 +4,10 @@ GoalAppAlbert::Application.routes.draw do
   get "sessions/new"
   get "goals/new"
 
-  resources :users
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :goals,    :only => [:new, :create, :show, :update, :destroy]
-  resources :searchs, :only => [:create, :results]
+  resources :users,	:only => [:new, :create, :show, :update, :destroy]	
+  resources :sessions,	:only => [:new, :create, :destroy]
+  resources :goals,	:only => [:new, :create, :show, :update, :destroy]
+  resources :searchs,	:only => [:create, :results]
   resources :user_goal_relationships, :only => [:create, :destroy]
   resources :user_goal_milestone_relationships, :only => [:create, :destroy]
 
@@ -16,7 +16,6 @@ GoalAppAlbert::Application.routes.draw do
   match '/signup',          :to => 'users#new'
   match '/signin',          :to => 'sessions#new'
   match '/signout',         :to => 'sessions#destroy'
-
   match '/test',            :to => 'goals#test'
   match '/newGoal',         :to => 'goals#new'
   match '/editGoal',        :to => 'goals#edit'

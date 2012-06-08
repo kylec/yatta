@@ -5,7 +5,7 @@ class UserGoalMilestoneRelationshipsController < ApplicationController
     @userGoalRelationship = UserGoalRelationship.find(params[:user_goal_milestone_relationship][:user_goal_relationship_id])
     @userGoalRelationship.complete!(@milestone)
     @goal = @userGoalRelationship.goal
-    redirect_to @goal
+    redirect_to user_goal_path(current_user.username, @goal.title)
   end
 
   def destroy
@@ -13,7 +13,7 @@ class UserGoalMilestoneRelationshipsController < ApplicationController
     @userGoalRelationship = UserGoalRelationship.find(params[:user_goal_milestone_relationship][:user_goal_relationship_id])
     @userGoalRelationship.incomplete!(@milestone)
     @goal = @userGoalRelationship.goal
-    redirect_to @goal
+    redirect_to user_goal_path(current_user.username, @goal.title)
   end
 
 end

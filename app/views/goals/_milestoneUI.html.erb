@@ -1,4 +1,9 @@
-<%= form_for @goal, :url => {:action => "update"}, :html => {:id => "edit_goal_#{@goal.title}"} do |f| %>
+<% if (!@goal.title) %>
+  <% @formAction = "create" %>
+<% else %>
+  <% @formAction = "update" %>
+<% end %> 
+<%= form_for @goal, :url => {:action => @formAction}, :html => {:id => "edit_goal_#{@goal.title}"} do |f| %>  
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="allgoalinfo">
     <div class="round goalfields">

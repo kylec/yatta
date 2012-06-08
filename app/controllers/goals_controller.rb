@@ -15,7 +15,6 @@ class GoalsController < ApplicationController
   def create
     #todo: check if goal title exists for current_user
     @goal = current_user.goals.build(params[:goal])
-
     index = 0
     @goal.milestones.each do |i|
       i.position = index
