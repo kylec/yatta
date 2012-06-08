@@ -60,15 +60,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def showAllGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"All"
-  end
-
-  def showActiveGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Active"
-  end
-
-  def showCreatedGoals
-    redirect_to :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Created"
-  end
 end

@@ -8,16 +8,16 @@
     <td>
       <ul>
         <li>
-          <%= link_to "All", allGoals_path %>
+          <%= link_to "All", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"All" %>
         </li>
         <li>
-          <%= link_to "Active", activeGoals_path %>
+          <%= link_to "Active", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Active" %>
         </li>
         <li>
-          <%= link_to "Created", createdGoals_path %>
+          <%= link_to "Created", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Created" %>
         </li>
         <li>
-          <%= link_to "Create Goal", newGoal_path %>
+          <%= link_to "Create Goal", new_user_goal_path(current_user.username) %>
         </li>
       </ul>
     </td>
@@ -52,7 +52,7 @@
       <% goal = v[:g] %>
       <li>
         <div class="goalStickyTitle">
-          <p><%= link_to goal.title, goal %></p>
+             <p><%= link_to goal.title, user_goal_path(current_user.username, goal.title) %></p>
         </div>
         <% if v[:w] %> 
           <% @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(goal) %>

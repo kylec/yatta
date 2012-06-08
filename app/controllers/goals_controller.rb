@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
    
     if @goal.save
       flash[:notice] = "Successfully created goal."
-      redirect_to @goal
+      redirect_to user_goal_path(current_user.username, @goal.title)
     else
       render :action => 'new'
     end
@@ -36,20 +36,20 @@ class GoalsController < ApplicationController
   
   def show
     @title = "Goal"
-    @goal = Goal.find(params[:id])
+    @goal = Goal.find_by_title(params[:id])
     @goal.milestones.sort_by!(&:position)
     @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(@goal) 
   end
 
   def edit
     @title = GoalsHelper::EDIT_TITLE
-    @goal = Goal.find(params[:id])
+    @goal = Goal.find_by_title(params[:id])
     @goal.milestones.sort_by!(&:position)
   end
 
   def update
     # get the database goal data
-    @databaseGoal = Goal.find(params[:id])
+    @databaseGoal = Goal.find_by_title(params[:id])
     if (@databaseGoal.title.to_s != params["goal"]["title"].to_s) 
       @databaseGoal.title = params["goal"]["title"].to_s
       @databaseGoal.save
@@ -112,13 +112,13 @@ class GoalsController < ApplicationController
       end
     end
     
-    redirect_to @databaseGoal
+    redirect_to user_goal_path(current_user.username, @databaseGoal.title)
   end
   
   private
 
     def authorized_user
-      @goal = current_user.goals.find_by_id(params[:id])
+      @goal = current_user.goals.find_by_title(params[:id])
       redirect_to root_path if @goal.nil?
     end
 
