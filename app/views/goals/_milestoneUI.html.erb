@@ -1,8 +1,10 @@
-<% if (!@goal.title) %>
-  <% @formAction = "create" %>
-<% else %>
+<% if (@title == GoalsHelper::CREATE_TITLE) %>
+  <% @formAction =  "create" %>
+<% elsif (@title == GoalsHelper::EDIT_TITLE) %>
   <% @formAction = "update" %>
-<% end %> 
+<% else %> 
+  <% @formAction = "create" %>
+<% end %>
 <%= form_for @goal, :url => {:action => @formAction}, :html => {:id => "edit_goal_#{@goal.title}"} do |f| %>  
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="allgoalinfo">
