@@ -135,6 +135,7 @@ nav ul li a:hover {
 
 /* footer */
 footer {
+  float: left;
   text-align: center;
   margin-top: 100px;
   width: 710px;
@@ -419,52 +420,61 @@ span.description {
 /* profile list */
 .profileContent {
   float: left;
-  padding: 10px 0px 50px 0px;
-  overflow: auto;
-  width: 900px;
+  margin: 20px 0px 60px 120px;
+  padding: 0px 0px 50px 0px;
+  overflow: hidden;
+  width: 700px;
+  height: 150px;
   font-size: 50px;
   font-family: Helvetica, Arial, sans-serif;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
 }
 
 .profileImage {
   float: left;
-  overflow: auto;
-  padding: 0px 30px 0px 10px;
+  padding: 0px 30px 0px 0px;
 }
 
 /* menuBar */
 .menuBar {
-  margin: 30px 30px 30px 30px;
-  padding: 0px 0px 0px 0px;
-  
+  float: left;
+  margin: 0px 0px 0px 0px;
+  background-color: #000;
+  width: 950px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
 }
 
 .goalmenulist {
   margin-right: 80px;
-  margin-left: 60px;
+  padding: 0px 0px 0px 20px;
 }
 
 .goalmenulist li {
   text-align: center;
   display: inline;
   width: 100px;
-  height:100px;
-  font-size: 40px;
-  font-family: 'Reenie Beanie', Helvetica, Arial, sans-serif;
-  padding: 15px 30px 15px 30px;
+  font-size: 20px;
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 10px 10px 10px 10px;
+}
 
+.goalmenulist a {
+  color: #EEEEEE;
 }
 
 .goalmenulist li:hover {
-  background-color: rgb(223,226,250);
-   clear:both;
-    width:100%;
-    line-height:30px;
-    overflow: hidden;
-    height: 80px;
+  background-color: #313232;
+  width:100%;
+  overflow: hidden;
 }
 
 .goalsTable {
+  width: 950px;
   border-width:2px;
   background-color: #FFF;
   padding: 0px 30px 0px 20px;
