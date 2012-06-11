@@ -4,19 +4,7 @@
 }
 
 body {
-background-image: linear-gradient(left , rgb(255,255,255) 0%, rgb(223,226,250) 100%);
-background-image: -o-linear-gradient(left , rgb(255,255,255) 0%, rgb(223,226,250) 100%);
-background-image: -moz-linear-gradient(left , rgb(255,255,255) 0%, rgb(223,226,250) 100%);
-background-image: -webkit-linear-gradient(left , rgb(255,255,255) 0%, rgb(223,226,250) 100%);
-background-image: -ms-linear-gradient(left , rgb(255,255,255) 0%, rgb(223,226,250) 100%);
-
-background-image: -webkit-gradient(
-  linear,
-  left top,
-  right top,
-  color-stop(0, rgb(255,255,255)),
-  color-stop(1, rgb(223,226,250))
-);
+background: url("white_leather.png");
   margin: 0 auto;
   font-family: helvetica;
   
@@ -138,7 +126,7 @@ footer {
   float: left;
   text-align: center;
   margin-top: 100px;
-  width: 710px;
+  width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -321,6 +309,7 @@ span.description {
 	background-size: cover;
 }
 
+/* User show page css */
 .notes {
   padding-left: 10px;
 }
@@ -474,6 +463,7 @@ span.description {
 }
 
 .goalsTable {
+  float: left;
   width: 950px;
   border-width:2px;
   background-color: #FFF;
@@ -481,4 +471,90 @@ span.description {
   -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
   -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
   box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+}
+
+/* Goal show page css */
+#oneGoalBackground {
+  float:left;
+  background: #FFFFFF;
+  width: 800px;
+  margin: 0px 0px 0px 50px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+}
+
+#oneBigGoalStickyNote {
+  float: left;
+  width: 600px;
+
+  background: linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -o-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -moz-linear-gradient(bottom, rgb(245,245,100), rgb(245,247,190));
+  background: -webkit-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -ms-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
+  background: -webkit-gradient(
+	  linear,
+	  left bottom,
+	  left top,
+	  color-stop(0.37, rgb(250,250,123)),
+	  color-stop(0.04, rgb(250,252,207))
+  );
+  -webkit-box-shadow: 3px 3px 5px 3px rgba(0,0,0,.5);
+  -moz-box-shadow: 3px 3px 5px 3px rgba(0,0,0,.5);
+  box-shadow: 3px 3px 5px 3px #ccc;
+  -webkit-transform: rotate(-.5deg);
+  -moz-transform: rotate(-.5deg);
+  -o-transform: rotate(-.5deg);
+
+  margin: 40px 0px 0px 80px;
+  padding: 20px 15px 15px 30px;
+
+  font: normal normal normal 16px/20px Helvetica, Arial, sans-serif;
+}
+
+#oneBigGoalStickyNote::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 250px;
+  top: -15px;
+  width: 150px;
+  height: 25px;
+  z-index: 2;
+  background-color: rgba(243,245,228,0.5);
+  border: 2px solid rgba(255,255,255,0.5);
+  -webkit-box-shadow: 0 0 5px #888;
+  -moz-box-shadow: 0 0 5px #888;
+  box-shadow: 3px 3px 5px 3px #ccc;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+}
+
+#oneBigGoalTitle {
+  font: normal normal normal 55px/60px 'Reenie Beanie', Helvetica, Arial, sans-serif;
+  color: #069;
+}
+
+#oneBigGoalDescription {
+  font: normal normal normal 20px/24px Helvetica, Arial, sans-serif;
+  color: #069;
+}
+
+.oneBigGoalMilestoneButton {
+  float:left;
+  margin: 0px 10px 0px 0px;
+}
+
+.oneBigGoalMilestone {
+
+}
+
+.oneBigGoalMilestoneTitle {
+  font: normal normal normal 20px/24px Helvetica, Arial, sans-serif;
+}
+
+.oneBigGoalMilestoneDescription {
+
 }

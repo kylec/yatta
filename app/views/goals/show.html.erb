@@ -1,5 +1,11 @@
+<div id="oneGoalBackground">
+    <div id="oneBigGoalStickyNote">
+      <%= render :partial => 'goals/goal', :object => @goal %>
+    </div>
+</div>
 
-<%= render :partial => 'goals/goal', :object => @goal %>
+
+
 <% if current_user.created?(@goal) %>
   <%= link_to  "Edit Goal", edit_user_goal_path(current_user.username, @goal.title) %>
 <% end %>

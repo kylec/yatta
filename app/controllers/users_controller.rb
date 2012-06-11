@@ -52,7 +52,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Goal App!"
       redirect_to :controller => "users", :action => "show", :id => current_user.username
     else
       @title = "Sign up"

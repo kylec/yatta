@@ -1,27 +1,35 @@
-<h1><%= @goal.title %></h1>
-<h2><%= @goal.description %></h2>
+<div id="oneBigGoalTitle"><%= @goal.title %></div>
+<div id="oneBigGoalDescription"><%= @goal.description %></div><br>
   <div id="milestones">
     <% @goal.milestones.each do |milestone| %>
-      <li>
-        <div id="milestone_<%= milestone.id %>" class="portlet">      
-          <% if @userGoalRelationship != nil %>
-            <% userGoalMilestone = @userGoalRelationship.hasMilestone?(milestone) %>
-            <% if userGoalMilestone %>
-              <%= form_for userGoalMilestone, :html => {:method => :delete} do |f| %>
-                <div><%= f.hidden_field :user_goal_relationship_id %></div>
-                <div class="actions"><%= f.submit "Complete" %></div>
-              <% end %>
-            <% else %>
-              <%= form_for (@userGoalRelationship.user_goal_milestone_relationships.build(:milestone_id => milestone.id)) do |f| %>
-                <div><%= f.hidden_field :milestone_id %></div>
-                <div><%= f.hidden_field :user_goal_relationship_id %></div>
-                <div class="actions"><%= f.submit "Incomplete" %></div>
+      <ul>
+        <li>
+          <div id="milestone_<%= milestone.id %>" class="portlet">
+            <% if @userGoalRelationship != nil %>
+              <% userGoalMilestone = @userGoalRelationship.hasMilestone?(milestone) %>
+              <% if userGoalMilestone %>
+                <%= form_for userGoalMilestone, :html => {:method => :delete} do |f| %>
+                  <div><%= f.hidden_field :user_goal_relationship_id %></div>
+                  <div>
+                    <%= f.submit "Complete" %>
+                    <p class="oneBigGoalMilestoneTitle"><%= milestone.title %></p><br>
+                    <%= milestone.description %>
+                  </div>
+                <% end %>
+              <% else %>
+                <%= form_for (@userGoalRelationship.user_goal_milestone_relationships.build(:milestone_id => milestone.id)) do |f| %>
+                  <div><%= f.hidden_field :milestone_id %></div>
+                  <div><%= f.hidden_field :user_goal_relationship_id %></div>
+                  <div class="oneBigGoalMilestone">
+                    <%= f.submit "Incomplete", :class=>"oneBigGoalMilestoneButton" %>
+                    <div class="oneBigGoalMilestoneTitle"><%= milestone.title %></div>
+                    <div class="oneBigGoalMilestoneDescription"><%= milestone.description %></div>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>  
-          <%= milestone.title %><br>
-          <%= milestone.description %>
-        </div>
-      </li>
+          </div>
+        </li>
+      </ul>
     <% end %>
   </div>
