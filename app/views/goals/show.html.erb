@@ -4,19 +4,19 @@
     </div>
 </div>
 
-
-
+<div class="oneGoalOptions">
 <% if current_user.created?(@goal) %>
   <%= link_to  "Edit Goal", edit_user_goal_path(current_user.username, @goal.title) %>
 <% end %>
 <% if current_user.working?(@goal) %>
   <%= form_for current_user.user_goal_relationships.find_by_goal_id(@goal),
                    :html => {:method => :delete} do |f| %>
-    <div class="actions"><%= f.submit "Don't Do Me" %></div>
+  <%= f.submit "Don't Do Me" %>
   <% end %>
 <% else %>
   <%= form_for (current_user.user_goal_relationships.build(:goal_id => @goal.id)) do |f| %>
     <div><%= f.hidden_field :goal_id %></div>
-    <div class="actions"><%= f.submit "Do Me" %></div>
+    <%= f.submit "Do Me" %>
   <% end %>
 <% end %>
+</div>
