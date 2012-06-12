@@ -22,7 +22,7 @@ class GoalsController < ApplicationController
     end
    
     if @goal.save
-      flash[:notice] = "Successfully created goal."
+      current_user.work!(@goal)
       redirect_to user_goal_path(current_user.username, @goal.title)
     else
       render :action => 'new'
@@ -30,7 +30,8 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    
+    Goal.find_by_title(params[:id]).destroy
+    redirect_to :controller => "users", :action => "show", :id => current_user.username
   end
   
   def show

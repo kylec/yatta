@@ -29,6 +29,12 @@
                   </div>
                 <% end %>
               <% end %>
+            <% else %>
+              <div class="hugeBullet"></div>
+              <div class="oneBigGoalMilestone">
+                <div class="oneBigGoalMilestoneTitle"><%= milestone.title %></div>
+                <div class="oneBigGoalMilestoneDescription"><%= milestone.description %></div>
+              </div>
             <% end %>
           </div>
         </li>

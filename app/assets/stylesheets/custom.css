@@ -486,7 +486,7 @@ span.description {
 
 #oneBigGoalStickyNote {
   float: left;
-  width: 600px;
+  width: 585px;
 
   background: linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
   background: -o-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
@@ -508,9 +508,10 @@ span.description {
   -o-transform: rotate(-.5deg);
 
   margin: 40px 0px 0px 80px;
-  padding: 20px 15px 15px 30px;
+  padding: 20px 30px 15px 30px;
 
   font: normal normal normal 16px/20px Helvetica, Arial, sans-serif;
+  word-wrap: break-word;
 }
 
 #oneBigGoalStickyNote::before {
@@ -568,7 +569,6 @@ span.description {
   background: #00FF00;
 }
 
-
 .oneBigGoalMilestone {
   margin: 0px 0px 0px 120px;
 }
@@ -583,4 +583,12 @@ span.description {
 
 .oneGoalOptions {
   float: left;
+}
+
+.hugeBullet {
+  float: left;
+  height: 10px;
+  width: 10px;
+  margin: 15px 0px 0px 90px;
+  background: #000000;
 }
