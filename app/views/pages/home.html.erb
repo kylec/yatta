@@ -1,25 +1,27 @@
 <% if signed_in? %>
   <%= link_to "user profile", :controller => "users", :action => "show", :id => current_user.username %>
 <% else %>
-  <body  id="homeBody">
-    <table>
-      <tr>
-        <th id="statement">
-          <h1>Achieve your goals</h1>
-          <h2>
+  <body id="homeBody">
+    <div id="homeContainer">
+      <div id="homeText">
+            <h1>
+              Achieve your goals
+            </h1>
+        
+          <h2> 
             A community for creating,<br>
             sharing, and pursuing<br>
             your goals
           </h2>
-        </th>
-        <th id="homeSearchBox">
-          <%= form_for(:session) do |f| %>
-              <%= f.text_field :Search, :placeholder => "Find your goal", :class=>"field", :id=>"homeSearchField" %>
-              <%= f.submit "Find", :class=>"actions", :id=>"homeSearchButton" %>
-          <% end %>
-        </th>
-      </tr>
-    </table>
+      </div>
+      
+      <div id="homeSearch">
+        <%= form_for :session, :method => :get do |f| %>
+          <%= f.text_field :Search, :placeholder => "Find a goal", :class=>"field", :id=>"homeSearchField" %>
+          <%= link_to image_tag("search_button_grey.png", :id => "searchButton") %>
+        <% end %>
+      </div>
+    </div>
   </body>
 <% end %>
  

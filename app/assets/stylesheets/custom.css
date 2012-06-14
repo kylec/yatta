@@ -1,54 +1,80 @@
+/* page container */
 .container {
   width: 900px;
   margin: 0 auto;
 }
 
 body {
-background: url("white_leather.png");
+  background: url("white_leather.png");
   margin: 0 auto;
   font-family: helvetica;
   
-}
-
-header {
-  padding: 20px 0px 0px 0px;
-  margin: 0px 0px 25px 0px;
-  background: #000;
-  -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
-  -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
 }
 
 ul li {
   list-style-type: none;
 }
 
-.mainTop {
+/* header */
+header {
+  padding: 0px 0px 10px 0px;
+  margin: 0px 0px 25px 0px;
+  background: #000;
+  height: 60px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
+}
+
+#headerNav {
   font-family: helvetica;
   width: 900px;
-  margin: 0 auto;
+  padding-top: 0px;
+  padding-bottom: 20px;
   font-size: 18px;
 }
 
-.loginButton {
-  color: #FFFFFF;
-  background-color: #0676E6;
-
+/* header search */
+#headerLogo {
+  float: left;
+  margin-top: 10px;
 }
 
-section {
-  margin-top: 1em;
-  font-size: 120%;
-  padding: 20px;
-  background: #fff;
+#headerSearch {
+  float: left;
+  margin: 10px 0px 0px 100px;
 }
 
-section h1 {
-  font-size: 200%;
+#headerSearchField {
+  float: left;
+  height: 20px;
+  width: 200px;
+  font-size: 15px;
+  margin: 15px 0px 0px 330px;
+  background-color: #EEEEEE;
+}
+
+#headerSearchButton {
+  float: left;
+  height: 15px;
+  margin: 15px 0px 0px 5px;
+  padding: 5px 5px 5px 5px;
+  border: 1px solid;
+  border-color: grey;
+  background-color: #EEEEEE;
+}
+
+#headerUserMenu a{
+  float: right;
+  color: #EEEEEE;
+  padding: 25px 10px 25px 10px;
+}
+
+#headerUserMenu a:hover {
+  background-color: #666666;
 }
 
 /* Links */
-
 a {
   color: #069;
   text-decoration: none; 
@@ -99,7 +125,7 @@ nav ul li a:hover {
 }
 
 .login {
-  margin: 10px 0px 0px 0px;
+  margin: 25px 0px 0px 0px;
 }
 
 .login a {
@@ -280,36 +306,8 @@ span.description {
 
 }
 
-.search-bar {
-  float:right;
-  margin-right:100px;
-}
 
-#statement {
-  height: 300px;
-  padding-left: 50px;
-  padding-right: 100px;
-
-}
-
-#homeSearchBox {
-  height: 300px;
-  padding-left: 10px;
-  padding-right: 25px;
-}
-
-#homeSearchField {
-  height: 35px;
-  width: 300px;
-  font-size: 25px;
-}
-
-#homeSearchButton {
-  height: 35px;
-  width: 40px;
-  font-size: 15px;
-}
-
+/* home page */
 #homeBody {
   background: url("homePic.png") no-repeat right center fixed;
   -webkit-background-size: cover;
@@ -317,6 +315,63 @@ span.description {
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+#homeContainer {
+  float: left;
+  height: 600px;
+  width: 900px;
+}
+
+#homeText {
+  float:left;
+  height: 600px;
+  width: 450px;
+  margin: 90px 0px 0px 0px;
+  text-align: center;
+}
+
+#homeTitle {
+  float: left;
+  height: 50px;
+  padding: 0px 50px 0 50px;
+}
+
+#homeDescription {
+  float: left;
+  height: 100px;
+  padding: 0px 50px 0 50px;
+}
+
+#homeSearch {
+  float: left;
+  margin: 150px 0px 0px 45px;
+}
+
+#homeSearchField {
+  float: left;
+  height: 35px;
+  width: 300px;
+  font-size: 25px;
+  margin: 0px 0px 0px 0px;
+  /*background-color: #FFFFFF;
+  border: 1px solid;
+  border-color: #C2C0C0 #CCCACA #D1CFCF;*/
+}
+
+#searchButton {
+  float: left;
+  height: 28px;
+  margin: 1px 0px 0px 5px;
+  padding: 5px 5px 5px 5px;
+  background-color: #F0F0F0;
+  border: 1px solid;
+  border-color: grey;
+  box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+  -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.05);
+  -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
+  
+}
+
 
 /* User show page css */
 .notes {
