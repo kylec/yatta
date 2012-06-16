@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120611235836) do
 
   create_table "goals", :force => true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
