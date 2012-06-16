@@ -15,12 +15,9 @@
           </h2>
       </div>
       
-      <div id="homeSearch">
-        <%= form_for :session, :method => :get do |f| %>
-          <%= f.text_field :Search, :placeholder => "Find a goal", :class=>"field", :id=>"homeSearchField" %>
-          <%= link_to image_tag("search_button_grey.png", :id => "searchButton") %>
-        <% end %>
-      </div>
+      <%= form_for :session, :method => :get do |f| %>
+        <%= f.text_field :Search, :placeholder => "Find a goal", :class=>"field round", :id=>"homeSearchField" %>
+      <% end %>
     </div>
   </body>
 <% end %>

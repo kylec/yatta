@@ -19,11 +19,12 @@ ul li {
 header {
   padding: 0px 0px 10px 0px;
   margin: 0px 0px 25px 0px;
-  background: #000;
-  height: 60px;
-  -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
-  -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
-  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 1.0);
+  background: #1A1A1A;
+  height: 40px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 1.0);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 1.0);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 1.0);
+  font: normal normal normal 17px/21px Helvetica, Arial, sans-serif;
 }
 
 #headerNav {
@@ -31,43 +32,42 @@ header {
   width: 900px;
   padding-top: 0px;
   padding-bottom: 20px;
-  font-size: 18px;
 }
 
 /* header search */
-#headerLogo {
+#headerLink {
   float: left;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
-#headerSearch {
-  float: left;
-  margin: 10px 0px 0px 100px;
+#headerLogo {
+  height: 100%;
+  width: 100%;
 }
 
 #headerSearchField {
   float: left;
   height: 20px;
-  width: 200px;
+  width: 210px;
   font-size: 15px;
-  margin: 15px 0px 0px 330px;
-  background-color: #EEEEEE;
+  margin: 15px 0px 0px 375px;
+  padding: 2px 0px 2px 25px;
+  color: #1A1A1A;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #EEEEEE;
+  background:  url("search_button_grey_header.png") no-repeat scroll left top transparent;
+  background-size: 185%;
 }
 
-#headerSearchButton {
-  float: left;
-  height: 15px;
-  margin: 15px 0px 0px 5px;
-  padding: 5px 5px 5px 5px;
-  border: 1px solid;
-  border-color: grey;
-  background-color: #EEEEEE;
+#headerUserMenu {
+  margin: 0px 0px 0px 0px;
 }
 
 #headerUserMenu a{
-  float: right;
+  display: block;
   color: #EEEEEE;
-  padding: 25px 10px 25px 10px;
+  padding: 16px;
 }
 
 #headerUserMenu a:hover {
@@ -125,13 +125,13 @@ nav ul li a:hover {
 }
 
 .login {
-  margin: 25px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .login a {
+  display: block;
   color: #FFFFFF;
-  padding: 30px 25px 25px 25px;
-  font: normal normal normal 20px/24px Helvetica, Arial, sans-serif;
+  padding: 16px;
 }
 
 .login a:hover {
@@ -352,30 +352,91 @@ span.description {
   height: 35px;
   width: 300px;
   font-size: 25px;
-  margin: 0px 0px 0px 0px;
-  /*background-color: #FFFFFF;
-  border: 1px solid;
-  border-color: #C2C0C0 #CCCACA #D1CFCF;*/
+  margin: 150px 0px 0px 45px;
+  padding: 0px 0px 0px 40px;
+  background:  url("search_button_grey_header.png") no-repeat scroll left top transparent;
+  background-size: 200%;
+  color: #666666;
 }
 
-#searchButton {
+/* profile list */
+.profileContent {
   float: left;
-  height: 28px;
-  margin: 1px 0px 0px 5px;
-  padding: 5px 5px 5px 5px;
-  background-color: #F0F0F0;
-  border: 1px solid;
-  border-color: grey;
-  box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
-  -moz-box-shadow: 0 1px #fff, inset 0 1px rgba(34,25,25,0.05);
-  -webkit-box-shadow: 0 1px white, inset 0 1px rgba(34, 25, 25, 0.05);
-  
+  margin: 0px 0px 0px 155px;
+  padding: 0px 0px 50px 0px;
+  overflow: hidden;
+  width: 600px;
+  height: 100px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #333333;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
 }
 
+.profileImage {
+  float: left;
+  padding: 0px 30px 0px 0px;
+}
 
-/* User show page css */
+.profileUsername {
+  float:left;
+  font-size: 37px;
+  font-weight: bold;
+  margin: 10px 0px 0px -10px;
+}
+
+/* menuBar */
+.menuBar {
+  float: left;
+  margin: 25px 0px 0px 0px;
+  background-color: #111111;
+  width: 100%;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+  font: normal normal normal 15px/19px Helvetica, Arial, sans-serif;
+}
+
+.goalmenulist {
+  list-style-type: none;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.goalmenulist li {
+  float: left;
+  border-bottom: none;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.goalmenulist li a {
+  display: block;
+  text-decoration: none;
+  color: #EEEEEE;
+  padding: 13px 20px;
+}
+
+.goalmenulist li:hover {
+  background-color: #313232;
+}
+
+.goalsTable {
+  float: left;
+  width: 100%;
+  border-width:2px;
+  background-color: #FFF;
+  padding: 0px 30px 0px 20px;
+  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
+  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
+}
+
+/* User show page sticky notes css */
 .notes {
-  padding-left: 10px;
+  padding: 0px 0px 0px 5px;
 }
 
 .notes a:hover {
@@ -384,9 +445,8 @@ span.description {
 
 .notes li {
   position: relative;
-  width: 180px;
-  min-height: 100px;
-  margin: 25px auto;
+  width: 170px;
+  margin: 25px 0px 0px 0px;
   padding: 35px 15px 15px 15px;
   background: linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
   background: -o-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
@@ -468,74 +528,6 @@ span.description {
 .goalStickyTitle{ 
   text-align: center;
   vertical-align: top;
-}
-
-/* profile list */
-.profileContent {
-  float: left;
-  margin: 20px 0px 60px 120px;
-  padding: 0px 0px 50px 0px;
-  overflow: hidden;
-  width: 700px;
-  height: 150px;
-  font-size: 50px;
-  font-family: Helvetica, Arial, sans-serif;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
-}
-
-.profileImage {
-  float: left;
-  padding: 0px 30px 0px 0px;
-}
-
-/* menuBar */
-.menuBar {
-  float: left;
-  margin: 0px 0px 0px 0px;
-  background-color: #000;
-  width: 950px;
-  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
-}
-
-.goalmenulist {
-  list-style-type: none;
-  overflow: auto;
-  padding: 0;
-  margin: 0;
-}
-
-.goalmenulist li {
-  float: left;
-  border-bottom: none;
-  font-size: 20px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.goalmenulist li a {
-  display: block;
-  text-decoration: none;
-  color: #EEEEEE;
-  padding: 10px 20px;
-}
-
-.goalmenulist li:hover {
-  background-color: #313232;
-}
-
-.goalsTable {
-  float: left;
-  width: 950px;
-  border-width:2px;
-  background-color: #FFF;
-  padding: 0px 30px 0px 20px;
-  -webkit-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  -moz-box-shadow: 2px 2px 2px 2px rgba(0,0,0,.2);
-  box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
 }
 
 /* Goal show page css */

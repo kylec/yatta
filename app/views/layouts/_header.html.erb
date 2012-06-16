@@ -1,14 +1,11 @@
 <header>
   <div id="headerNav" class="container">
-    <%= link_to logo, root_path, :id => "headerLogo"%>
+    <%= link_to logo, root_path, :id => "headerLink"%>
     <% if signed_in? %>
-      <div id="headerSearch">
-        <%= form_for :session, :method => :get do |f| %>
-          <%= f.text_field :Search, :placeholder => "Find a goal", :class=>"field", :id=>"headerSearchField" %>
-          <%= link_to image_tag("search_button_grey.png", :id => "headerSearchButton") %>
-        <% end %>
-      </div>
-      <div id="headerUserMenu">
+      <%= form_for :session, :method => :get do |f| %>
+        <%= f.text_field :Search, :placeholder => "Find a goal", :class=>"field round", :id=>"headerSearchField" %>
+      <% end %>
+      <div id="headerUserMenu" class="right">
         <%= link_to "Sign out", signout_path, :method => :delete %>
       </div>
     <% else %>

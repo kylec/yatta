@@ -9,6 +9,6 @@ module ApplicationHelper
   end
   
   def logo
-    image_tag("logo-shrink.png", :alt =>"Goal App")
+    image_tag("logo-shrink.png", :alt =>"Goal App", :id=>"headerLogo")
   end
 end
