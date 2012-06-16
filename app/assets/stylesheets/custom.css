@@ -534,8 +534,8 @@ span.description {
 #oneGoalBackground {
   float:left;
   background: #FFFFFF;
-  width: 800px;
-  margin: 0px 0px 0px 50px;
+  width: 700px;
+  margin: 0px 0px 0px 100px;
   -webkit-box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
   -moz-box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
   box-shadow: 2px 2px 2px 2px rgba(.2,.2,.2,.2);
@@ -543,7 +543,7 @@ span.description {
 
 #oneBigGoalStickyNote {
   float: left;
-  width: 585px;
+  width: 485px;
 
   background: linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
   background: -o-linear-gradient(bottom, rgb(93,93,46), rgb(10,10,8));
@@ -575,7 +575,7 @@ span.description {
   content: ' ';
   display: block;
   position: absolute;
-  left: 250px;
+  left: 200px;
   top: -15px;
   width: 150px;
   height: 25px;
