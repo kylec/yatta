@@ -25,6 +25,7 @@ photo.JPG: photo-02c7a4081650a3cd8593f0f8de33f587.JPG
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 search_button_black.png: search_button_black-a92af9c0de860d759929e34bae4afafe.png
 search_button_grey.png: search_button_grey-e6b9e94c81740fb4873dbeef768e3bc9.png
+search_button_grey_header.png: search_button_grey_header-ffa9b23038d5d4ca501e82c03433274d.png
 white_leather.png: white_leather-f50c9fe473642abcf1f9ac085d14d530.png
 -1.xml: -1-cc9b2e6f93cc991be3881709c081fded.xml
 -2.xml: -2-c837c9c628ba76bf22957f8b7788409b.xml
@@ -38,4 +39,4 @@ test3-1.xml: test3-1-b7094d2dd6720dcf4e6400a6c0781a2f.xml
 jquery-ui.min.js: jquery-ui.min-2b432ef5545e6620f94e7638b7574058.js
 jquery.min.js: jquery.min-ac6382033c1c5e27ebbc5a5a0597ccb9.js
 application.js: application-342074ee2779467c9e605e5be18d9dce.js
-application.css: application-ebc3218f378746652c326cef0f38ea7b.css
+application.css: application-99e911578d54bdd3e6918cf0bbdee8af.css

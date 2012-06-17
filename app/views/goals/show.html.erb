@@ -22,9 +22,4 @@
   <div id="oneBigGoalStickyNote">
     <%= render :partial => 'goals/goal', :object => @goal %>
   </div>
-  
-<%= form_for @goal, :url => {:action => 'create'}, :html => {:id => "edit_goal_#{@goal.title}"} do |f| %>  
-    <%= f.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
-  <% end %>
-<% end %>
 </div>
