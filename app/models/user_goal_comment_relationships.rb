@@ -4,8 +4,8 @@ class UserGoalCommentRelationships < ActiveRecord::Base
   belongs_to :user_goal_relationship
   belongs_to :user
   
-  validates :user_goal_relationship_id, :presence => true,
-  validates :user_id, :presence => true,
+  validates :user_goal_relationship_id, :presence => true
+  validates :user_id, :presence => true
   validates :comment, :presence => true,
                       :length   => { :maximum => 150 }                    
 end
