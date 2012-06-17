@@ -5,7 +5,8 @@ class UserGoalRelationship < ActiveRecord::Base
   belongs_to :goal
 
   has_many :user_goal_milestone_relationships, :foreign_key => "user_goal_relationship_id", :dependent => :destroy
-
+  has_many :user_goal_comment_relationships, :foreign_key => "user_goal_relationship_id", :dependent => :destroy
+  
   validates :user_id, :presence => true
   validates :goal_id, :presence => true
 

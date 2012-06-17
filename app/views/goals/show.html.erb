@@ -1,17 +1,30 @@
 <div id="oneGoalBackground">
-    <div id="oneBigGoalStickyNote">
-      <%= render :partial => 'goals/goal', :object => @goal %>
-    </div>
-</div>
+    <div class="menuBar">
+      <ul class="goalmenulist">
+        <% if current_user.created?(@goal) %>
+          <li>
+            <%= link_to  "Edit Goal", edit_user_goal_path(current_user.username, @goal.title) %>
+          </li>       
+          <li>
+            <%= link_to "Delete Goal", user_goal_path(current_user.username, @goal.title),  :method => :delete, :action => "destroy" %>
+          </li>
+        <% end %>
+        <li>
+          <% if current_user.working?(@goal) %>
+            <%= link_to "Quit Goal", user_goal_relationship_path(current_user.user_goal_relationships.find_by_goal_id(@goal)),  :method => :delete, :action => "destroy" %>
+          <% else %>
+            <%= link_to "Start Goal", {:controller=>"user_goal_relationships", :action => "create", :goal_id=>@goal.id}, :method=>:post %>
+          <% end %>
+        </li>
+      </ul>
+  </div>
 
-<div class="oneGoalOptions">
-<% if current_user.created?(@goal) %>
-  <%= link_to  "Edit Goal", edit_user_goal_path(current_user.username, @goal.title) %><br>
-  <%= link_to "Delete Goal", user_goal_path(current_user.username, @goal.title),  :method => :delete, :action => "destroy" %>
-<% end %>
-<% if current_user.working?(@goal) %>
-  <%= link_to "Don't Do Me", user_goal_relationship_path(current_user.user_goal_relationships.find_by_goal_id(@goal)),  :method => :delete, :action => "destroy" %>
-<% else %>
-  <%= link_to "Do Me", {:controller=>"user_goal_relationships", :action => "create", :goal_id=>@goal.id}, :method=>:post %>
+  <div id="oneBigGoalStickyNote">
+    <%= render :partial => 'goals/goal', :object => @goal %>
+  </div>
+  
+<%= form_for @goal, :url => {:action => 'create'}, :html => {:id => "edit_goal_#{@goal.title}"} do |f| %>  
+    <%= f.text_area :description, :class => "round miledescinput goalfont", :placeholder => "Enter Description" %>
+  <% end %>
 <% end %>
 </div>

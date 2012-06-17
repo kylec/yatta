@@ -7,22 +7,24 @@
   </div>
 </div>
 
-<div class="menuBar">
-  <ul class="goalmenulist">
+<div id="goalsContainer">
+
+  <div id="goalMenuBar" class="menuBar">
+    <ul class="goalmenulist">
       <li>
-          <%= link_to "All", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"All" %>
-        </li>
-        <li>
-          <%= link_to "Active", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Active" %>
-        </li>
-        <li>
-          <%= link_to "Created", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Created" %>
-        </li>
-        <li>
-          <%= link_to "Create Goal", new_user_goal_path(current_user.username) %>
-        </li>
-      </ul>
-</div>
+        <%= link_to "All", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"All" %>
+      </li>
+      <li>
+        <%= link_to "Active", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Active" %>
+      </li>
+      <li>
+        <%= link_to "Created", :controller => "users", :action => "show", :id => current_user.username, :goalDisplayOption=>"Created" %>
+      </li>
+      <li>
+        <%= link_to "Create Goal", new_user_goal_path(current_user.username) %>
+      </li>
+    </ul>
+  </div>
 
 
 <table class="goalsTable">
@@ -79,6 +81,8 @@
   <% end %>
   </tr>
 </table>
+
+</div>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
