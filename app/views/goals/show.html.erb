@@ -1,3 +1,5 @@
+<%= javascript_include_tag "http://code.jquery.com/jquery-1.7.1.min.js", "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" %>
+
 <div id="oneGoalBackground">
     <div class="menuBar">
       <ul class="goalmenulist">
@@ -21,6 +23,19 @@
 
   <div id="oneBigGoalStickyNote">
     <%= render :partial => 'goals/goal', :object => @goal %>
+  </div>
+
+  <% if (!@userGoalRelationship.nil?) %>
+    <%= form_for @userGoalRelationship.user_goal_comment_relationships.build(:user_goal_relationship_id => @userGoalRelationship.id, :user_id => @user.id),
+                 :remote => true do |f| %>
+      <%= f.hidden_field :user_goal_relationship_id %>
+      <%= f.hidden_field :user_id %>
+      <%= f.text_area :comment, :placeholder => "Write a comment..." %>
+      <%= f.submit "Post" %>
+    <% end %>
+  <% end %>
+  <div id="workingGoalComments">
+    <%= render :partial => "workingGoalComments" %>
   </div>
 
 </div>
