@@ -1,0 +1,11 @@
+<ul>
+  <% if (!@userGoalRelationship.nil?) %>
+    <% @userGoalRelationship.user_goal_comment_relationships.each do | comment | %>
+      <li>
+        <%= comment.user_id %><br>
+        <%= comment.comment %>
+        <%= link_to "Delete", {:controller => "user_goal_comment_relationships",  :action => "destroy", :user_goal_comment_id => comment.id}, :method => :delete,  :remote => true %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
