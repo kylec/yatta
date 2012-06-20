@@ -1,17 +1,17 @@
 <div id="oneGoalBackground">
     <div class="menuBar">
       <ul class="goalmenulist">
-        <% if current_user.created?(@goal) %>
+        <% if @user.created?(@goal) %>
           <li>
-            <%= link_to  "Edit Goal", edit_user_goal_path(current_user.username, @goal.title) %>
+            <%= link_to  "Edit Goal", edit_user_goal_path(@user.username, @goal.title) %>
           </li>       
           <li>
-            <%= link_to "Delete Goal", user_goal_path(current_user.username, @goal.title),  :method => :delete, :action => "destroy" %>
+            <%= link_to "Delete Goal", user_goal_path(@user.username, @goal.title),  :method => :delete, :action => "destroy" %>
           </li>
         <% end %>
         <li>
-          <% if current_user.working?(@goal) %>
-            <%= link_to "Quit Goal", user_goal_relationship_path(current_user.user_goal_relationships.find_by_goal_id(@goal)),  :method => :delete, :action => "destroy" %>
+          <% if @user.working?(@goal) %>
+            <%= link_to "Quit Goal", user_goal_relationship_path(@user.user_goal_relationships.find_by_goal_id(@goal)),  :method => :delete, :action => "destroy" %>
           <% else %>
             <%= link_to "Start Goal", {:controller=>"user_goal_relationships", :action => "create", :goal_id=>@goal.id}, :method=>:post %>
           <% end %>
@@ -22,4 +22,5 @@
   <div id="oneBigGoalStickyNote">
     <%= render :partial => 'goals/goal', :object => @goal %>
   </div>
+
 </div>

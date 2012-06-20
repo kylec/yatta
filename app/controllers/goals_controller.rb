@@ -36,9 +36,10 @@ class GoalsController < ApplicationController
   
   def show
     @title = "Goal"
+    @user = User.find_by_username(params[:user_id])
     @goal = Goal.find_by_title(params[:id])
     @goal.milestones.sort_by!(&:position)
-    @userGoalRelationship = current_user.user_goal_relationships.find_by_goal_id(@goal) 
+    @userGoalRelationship = @user.user_goal_relationships.find_by_goal_id(@goal)
   end
 
   def edit

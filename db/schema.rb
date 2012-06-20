@@ -58,14 +58,6 @@ ActiveRecord::Schema.define(:version => 20120617224354) do
   add_index "user_goal_relationships", ["user_id", "goal_id"], :name => "index_user_goal_relationships_on_user_id_and_goal_id", :unique => true
   add_index "user_goal_relationships", ["user_id"], :name => "index_user_goal_relationships_on_user_id"
 
-  create_table "user_goal_relationships_comments", :force => true do |t|
-    t.integer  "user_goal_relationship_id"
-    t.integer  "user_id"
-    t.text     "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
