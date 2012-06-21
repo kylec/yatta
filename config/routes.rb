@@ -26,6 +26,7 @@ GoalAppAlbert::Application.routes.draw do
   match '/privacy',         :to => 'pages#home'
   match '/terms',           :to => 'pages#home'
   match '/accountSettings', :to => 'pages#home'
+  match 'user_goal_comment_relationships/:user_goal_comment_id', :to => 'user_goal_comment_relationships#destroy'
 
   resources :users do
     resources :goals

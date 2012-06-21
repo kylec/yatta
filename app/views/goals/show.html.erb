@@ -26,10 +26,10 @@
   </div>
 
   <% if (!@userGoalRelationship.nil?) %>
-    <%= form_for @userGoalRelationship.user_goal_comment_relationships.build(:user_goal_relationship_id => @userGoalRelationship.id, :user_id => @user.id),
+    <%= form_for :user_goal_comment_relationship,  :url => {:controller => "user_goal_comment_relationships", :action => "create"}, :method => :post,
                  :remote => true do |f| %>
-      <%= f.hidden_field :user_goal_relationship_id %>
-      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :user_goal_relationship_id, :value => @userGoalRelationship.id %>
+      <%= f.hidden_field :user_id, :value => @user.id %>
       <%= f.text_area :comment, :placeholder => "Write a comment..." %>
       <%= f.submit "Post" %>
     <% end %>
