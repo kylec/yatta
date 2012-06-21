@@ -15,7 +15,7 @@ class UserGoalCommentRelationshipsController < ApplicationController
   end
 
   def destroy
-    @comment = UserGoalCommentRelationship.find_by_id(params[:user_goal_comment_id]);
+    @comment = UserGoalCommentRelationship.find_by_id(params[:id]);
     puts @comment.class
     @userGoalRelationship = @comment.user_goal_relationship
     @username = @userGoalRelationship.user.username

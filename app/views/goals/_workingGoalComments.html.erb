@@ -4,7 +4,7 @@
       <li>
         <%= comment.user_id %><br>
         <%= comment.comment %>
-        <%= link_to "Delete", {:controller => "user_goal_comment_relationships",  :action => "destroy", :user_goal_comment_id => comment.id}, :method => :delete,  :remote => true %>
+        <%= link_to "Delete", {:controller => "user_goal_comment_relationships",  :action => "destroy", :id => comment.id}, :method => :delete,  :remote => true %>
       </li>
     <% end %>
   <% end %>
